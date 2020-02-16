@@ -1,0 +1,33 @@
+﻿body {
+   background-color:black;
+}
+
+ .uibutton {
+border-style: none;
+border-color: inherit;
+border-width: medium;
+background-color: #4CAF50;
+color: white;
+padding: 14px 15px;
+margin: 8px 0;
+cursor: pointer;
+}
+
+ .uitextbox{
+     Height:25px;
+     Width:211px;
+ }
+
+ .imgcontainer {
+  text-align: left;
+  margin: 24px 0 12px 0;
+ 
+}
+.btnSearch{
+     border-radius: 25px;
+ }
+ 
+ .container {
+  padding: 10px;
+}
+
