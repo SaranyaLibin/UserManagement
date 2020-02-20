@@ -12,9 +12,12 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-    <div>
+        <div style="text-align:right">
+            <asp:LinkButton ID="welcomeLogOut" runat="server" OnClick="welcomeLogOut_Click" CssClass="uilogout">LogOut</asp:LinkButton>
+        </div>
+        <div>
     <table style="width: 50%; border-width: 1px; text-align:match-parent;border-color: #666; border-style: solid">
-      <tr>
+        <tr>
         <td>
           <asp:Button Text="Welcome" BorderStyle="None" ID="welcome" CssClass="uibutton" runat="server"
 
@@ -33,9 +36,7 @@
               <table style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
                 <tr>
                   <td>
-                      <h3 style="color:white;">
-                          <span>Welcome User</span>
-                      </h3>
+                      <asp:Label ID="labelwelcome" runat="server" Text="Label" ForeColor="#FFFFCC"></asp:Label>
                   </td>
                 </tr>
               </table>

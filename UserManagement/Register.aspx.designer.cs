@@ -40,6 +40,15 @@ namespace UserManagement {
         protected global::System.Web.UI.UpdatePanel SignUpUpdatePanel;
         
         /// <summary>
+        /// label_error_register control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label label_error_register;
+        
+        /// <summary>
         /// label_register_emailaddress control.
         /// </summary>
         /// <remarks>
@@ -263,6 +272,24 @@ namespace UserManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_register_address;
+        
+        /// <summary>
+        /// captchaBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::BotDetect.Web.UI.WebFormsCaptcha captchaBox;
+        
+        /// <summary>
+        /// txtCaptcha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCaptcha;
         
         /// <summary>
         /// btn_register control.

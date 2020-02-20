@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using BotDetect.Web.Mvc;
+
 namespace UserManagement
 {
     public partial class Register : System.Web.UI.Page
@@ -13,6 +15,23 @@ namespace UserManagement
         protected void Page_Load(object sender, EventArgs e)
         {
             register_calendar.Visible = false;
+            if (IsPostBack)
+            {
+                bool isHuman = captchaBox.Validate(txtCaptcha.Text);
+
+                txtCaptcha.Text = null; // clear previous user input
+
+                if (!isHuman)
+                {
+                    label_error_register.Text = "Error occured:Invalid value entered for Captcha!!Please try again";
+                    label_error_register.Visible = true;
+                }
+                else
+                {
+                    // TODO: captcha validation succeeded; execute the protected action
+                    MvcCaptcha.ResetCaptcha("captchaBox");
+                }
+            }
         }
 
         protected void btn_register_Click(object sender, EventArgs e)

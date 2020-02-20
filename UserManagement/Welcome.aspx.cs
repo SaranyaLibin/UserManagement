@@ -11,19 +11,35 @@ namespace UserManagement
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            string username = null;
+            if (Session["username"] == null)
             {
-                MainView.ActiveViewIndex = 0;
-                UsersGridView1.DataSource = new object[] { null };
-                UsersGridView1.DataBind();
-                AccessGridView1.DataSource = new object[] { null };
-                AccessGridView1.DataBind();
+                username = null;
+                Response.Redirect("Login.aspx");
             }
+            else
+            {
+                username = (string)Session["username"];
+            }
+            labelwelcome.Text = "Welcome " + username;
+            labelwelcome.Visible = true;
+            MainView.ActiveViewIndex = 0;
+            UsersGridView1.DataSource = new object[] { null };
+            UsersGridView1.DataBind();
+            AccessGridView1.DataSource = new object[] { null };
+            AccessGridView1.DataBind();
         }
 
         protected void welcome_Click(object sender, EventArgs e)
         {
-            MainView.ActiveViewIndex = 0;
+
+            if (Session != null)
+            {
+                string username = Session["username"].ToString();
+                labelwelcome.Text = "Welcome " + username;
+                labelwelcome.Visible = true;
+                MainView.ActiveViewIndex = 0;
+            }
         }
 
         protected void MyProfile_Click(object sender, EventArgs e)
@@ -54,6 +70,12 @@ namespace UserManagement
         protected void View_Click(object sender, EventArgs e)
         {
             Response.Redirect("AddUser.aspx");
+        }
+
+        protected void welcomeLogOut_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("Login.aspx");
         }
     }
 }

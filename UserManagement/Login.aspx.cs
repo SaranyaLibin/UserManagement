@@ -14,6 +14,9 @@ namespace UserManagement
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (!IsPostBack)
+            {
                 if (createSchema())
                 {
                     //label_login_errmsg.Text = "UserManagement Schema created successfully";
@@ -21,13 +24,14 @@ namespace UserManagement
                     MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=N!ved!tas0;database=usermanagement");
                     if (createRegisterTable(conn))
                     {
-                       // label_login_errmsg.Text = "Database created successfully\n";
-                     }
+                        // label_login_errmsg.Text = "Database created successfully\n";
+                    }
                 }
                 else
                 {
                     label_login_errmsg.Text = "Failed to create schema\n";
                 }
+            }
           
         }
 
@@ -123,65 +127,71 @@ namespace UserManagement
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=N!ved!tas0;database=usermanagement");
-            try
+            if (Page.IsValid)
             {
-                conn.Open();
-                if (conn != null)
+                try
                 {
-                    MySqlCommand cmd = new MySqlCommand();
-                    string username = txt_login_username.Text.ToString();
-                    string password = txt_login_password.Text.ToString();
-                    //string selectquery = @"SELECT * FROM usermanagement.register WHERE username = '" + username +"'  and password= '" + password + "'";
-                    string selectquery = @"SELECT * FROM usermanagement.register WHERE username = '" + username + "'";
-                    cmd = new MySqlCommand(selectquery, conn);
-                    if (cmd != null)
+                    conn.Open();
+                    if (conn != null)
                     {
-                        cmd.ExecuteNonQuery();
-                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        int count = dt.Rows.Count;
-                        if (count == 0)
+                        MySqlCommand cmd = new MySqlCommand();
+                        string username = txt_login_username.Text.ToString();
+                        string password = txt_login_password.Text.ToString();
+                        //string selectquery = @"SELECT * FROM usermanagement.register WHERE username = '" + username +"'  and password= '" + password + "'";
+                        string selectquery = @"SELECT * FROM usermanagement.register WHERE username = '" + username + "'";
+                        cmd = new MySqlCommand(selectquery, conn);
+                        if (cmd != null)
                         {
-                            label_login_errmsg.Text = "Username does not exist!!!Click on SignUp to register\n";
-                            label_login_errmsg.Visible = true;
-                        }
-                        else
-                        {
-                            foreach (DataRow row in dt.Rows)
+                            cmd.ExecuteNonQuery();
+                            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            int count = dt.Rows.Count;
+                            if (count == 0)
                             {
-                                string dbusername = row["username"].ToString();
-                                string dbpassword = row["password"].ToString();
-                                if (username.Equals(dbusername) && (password.Equals(dbpassword)))
+                                label_login_errmsg.Text = "Username does not exist!!!Click on SignUp to register\n";
+                                label_login_errmsg.Visible = true;
+                            }
+                            else
+                            {
+                                foreach (DataRow row in dt.Rows)
                                 {
-                                    Response.Redirect("Welcome.aspx",false);
-                                }
-                                else
-                                {
+                                    string dbusername = row["username"].ToString();
+                                    string dbpassword = row["password"].ToString();
+                                    if (username.Equals(dbusername) && (password.Equals(dbpassword)))
+                                    {
+                                        Session["username"] = username;
+                                        Response.Redirect("Welcome.aspx", false);
+                                    }
+                                    else
+                                    {
 
-                                    label_login_errmsg.Text = "Username or password is incorrect\n";
+                                        label_login_errmsg.Text = "Username or password is incorrect\n";
+                                        label_login_errmsg.Visible = true;
+                                    }
                                 }
                             }
                         }
+
+                        else
+                        {
+                            label_login_errmsg.Text = "Failed to insert register Table\n";
+                        }
                     }
-                    
                     else
                     {
-                        label_login_errmsg.Text = "Failed to insert register Table\n";
+                        label_login_errmsg.Text = "Failed to connect to Database\n";
                     }
+                    conn.Close();
                 }
-                else
+                catch (Exception ex)
                 {
-                    label_login_errmsg.Text = "Failed to connect to Database\n";
+                    label_login_errmsg.Text = ex.Message;
                 }
-                conn.Close();
-            }
-            catch (Exception ex)
-            {
-                label_login_errmsg.Text = ex.Message;
             }
 
         }
+
     }
     
 }

@@ -40,6 +40,15 @@ namespace UserManagement {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
+        /// welcomeLogOut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton welcomeLogOut;
+        
+        /// <summary>
         /// welcome control.
         /// </summary>
         /// <remarks>
@@ -92,6 +101,15 @@ namespace UserManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.View View1;
+        
+        /// <summary>
+        /// labelwelcome control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelwelcome;
         
         /// <summary>
         /// View2 control.
