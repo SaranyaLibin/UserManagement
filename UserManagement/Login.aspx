@@ -7,20 +7,9 @@
     <title></title>
      <link rel = "stylesheet" type = "text/css" href = "usermanagement.css" />
     <style type="text/css">
-        .auto-style2 {
-            margin-left: 76px;
-        }
-        .auto-style3 {
-            height: 30px;
-            text-align: right;
-            color: white;
-            right: 35px;
-            position: fixed;
-            top: 91px;
-        }
-    </style>
+           </style>
     </head>
-<body style="height: 581px">
+<body>
     <form id="form1" runat="server">
     <asp:ScriptManager ID="scrptLogin" runat="server"></asp:ScriptManager> 
     <asp:UpdatePanel ID="LoginUpdatePanel" runat="server">

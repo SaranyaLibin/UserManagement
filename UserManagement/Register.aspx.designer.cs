@@ -157,6 +157,15 @@ namespace UserManagement {
         protected global::System.Web.UI.WebControls.TextBox txt_register_first_name;
         
         /// <summary>
+        /// RequiredFieldValidatorFirstName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorFirstName;
+        
+        /// <summary>
         /// label_register_lastname control.
         /// </summary>
         /// <remarks>
@@ -175,6 +184,15 @@ namespace UserManagement {
         protected global::System.Web.UI.WebControls.TextBox txt_register_last_name;
         
         /// <summary>
+        /// RequiredFieldValidatorLastname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorLastname;
+        
+        /// <summary>
         /// label_register_dateofbirth control.
         /// </summary>
         /// <remarks>
@@ -191,15 +209,6 @@ namespace UserManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_calendar_selecteddate;
-        
-        /// <summary>
-        /// imagebtn_calendar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imagebtn_calendar;
         
         /// <summary>
         /// DOBRequiredFieldValidator3 control.
@@ -236,15 +245,6 @@ namespace UserManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_register_phno;
-        
-        /// <summary>
-        /// PhoneRangeValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator PhoneRangeValidator1;
         
         /// <summary>
         /// RegularExpressionValidator1 control.
@@ -299,14 +299,5 @@ namespace UserManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_register;
-        
-        /// <summary>
-        /// labelreg_errormsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labelreg_errormsg;
     }
 }
