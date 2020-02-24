@@ -85,7 +85,7 @@
                  </td>
                     
                   <td>
-                      <asp:Calendar ID="profileCalendar1" runat="server" BackColor="#66CCFF" SelectionMode="DayWeekMonth"></asp:Calendar>
+                      <asp:TextBox ID="txtprofileCalendar" runat="server" TextMode="Password"></asp:TextBox>
                  </td>
                 </tr>
                    <tr>
@@ -125,10 +125,8 @@
                  </td>
                 </tr>
               </table>
-                
-
-
-              </asp:View>
+  
+             </asp:View>
             <asp:View ID="View3" runat="server">
               <table style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
       

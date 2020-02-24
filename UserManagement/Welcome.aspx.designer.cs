@@ -202,13 +202,13 @@ namespace UserManagement {
         protected global::System.Web.UI.WebControls.Label labelprofiledateofbirth;
         
         /// <summary>
-        /// profileCalendar1 control.
+        /// txtprofileCalendar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar profileCalendar1;
+        protected global::System.Web.UI.WebControls.TextBox txtprofileCalendar;
         
         /// <summary>
         /// labelprofileaccesstype control.

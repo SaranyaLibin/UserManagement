@@ -11,16 +11,14 @@ namespace UserManagement
 {
     public partial class Login : System.Web.UI.Page
     {
-
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            label_login_errmsg.Visible = false;
             if (!IsPostBack)
             {
                 if (createSchema())
                 {
                     //label_login_errmsg.Text = "UserManagement Schema created successfully";
-
                     MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=N!ved!tas0;database=usermanagement");
                     if (createRegisterTable(conn))
                     {
@@ -90,7 +88,7 @@ namespace UserManagement
                 {
                     MySqlCommand cmd = new MySqlCommand();
                     string strcreate = @"CREATE TABLE IF NOT EXISTS register (id INT NOT NULL AUTO_INCREMENT,username varchar(50),
-                    password varchar(45) NOT NULL, confirmpassword varchar(45) NOT NULL, 
+                    usertype varchar(45) NOT NULL,password varchar(45) NOT NULL, confirmpassword varchar(45) NOT NULL, 
                     firstname varchar(45) NOT NULL,lastname varchar(45) NOT NULL,
                     dateofbirth date NOT NULL,phonenumber varchar(45) NOT NULL,
                     address varchar(60) NOT NULL,PRIMARY KEY(username),KEY(id))";
@@ -158,14 +156,15 @@ namespace UserManagement
                                 {
                                     string dbusername = row["username"].ToString();
                                     string dbpassword = row["password"].ToString();
+                                    string dbusertype = row["usertype"].ToString();
                                     if (username.Equals(dbusername) && (password.Equals(dbpassword)))
                                     {
                                         Session["username"] = username;
+                                        Session["usertype"] = dbusertype;
                                         Response.Redirect("Welcome.aspx", false);
                                     }
                                     else
                                     {
-
                                         label_login_errmsg.Text = "Username or password is incorrect\n";
                                         label_login_errmsg.Visible = true;
                                     }

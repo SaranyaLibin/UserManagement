@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,9 +11,10 @@ namespace UserManagement
 {
     public partial class WelcomePage : System.Web.UI.Page
     {
+        string username = null;
+        string usertype = null;
         protected void Page_Load(object sender, EventArgs e)
         {
-            string username = null;
             if (Session["username"] == null)
             {
                 username = null;
@@ -20,9 +23,34 @@ namespace UserManagement
             else
             {
                 username = (string)Session["username"];
-            }
-            labelwelcome.Text = "Welcome " + username;
-            labelwelcome.Visible = true;
+                usertype = (string)Session["usertype"];
+                labelwelcome.Text = "Welcome " + username;
+                labelwelcome.Visible = true;
+                welcome.Visible = false;
+                myprofile.Visible = false;
+                users.Visible = false;
+                accessrequest.Visible = false;
+                if (usertype.Equals("SuperUser"))
+                {
+                    welcome.Visible = true;
+                    myprofile.Visible = true;
+                    users.Visible = true;
+                    accessrequest.Visible = true;
+                }
+                else if (usertype.Equals("ElevatedAccessUser"))
+                {
+                    welcome.Visible = true;
+                    myprofile.Visible = true;
+                    users.Visible = true;
+                }
+                else
+                {
+                    //regularuser
+                    //update register while updating request status
+                    welcome.Visible = true;
+                    myprofile.Visible = true;
+                }
+             }
             MainView.ActiveViewIndex = 0;
             UsersGridView1.DataSource = new object[] { null };
             UsersGridView1.DataBind();
@@ -44,7 +72,70 @@ namespace UserManagement
 
         protected void MyProfile_Click(object sender, EventArgs e)
         {
+            MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=N!ved!tas0;database=usermanagement");
+            string username = (string)Session["username"];
+            try
+            {
+                conn.Open();
+                if (conn != null)
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+                    string selectquery = @"SELECT * FROM usermanagement.register WHERE username = '" + username + "'";
+                    cmd = new MySqlCommand(selectquery, conn);
+                    if (cmd != null)
+                    {
+                        cmd.ExecuteNonQuery();
+                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        int count = dt.Rows.Count;
+                        if (count == 1)
+                        {
+                            foreach (DataRow row in dt.Rows)
+                            {
+                                string dbpassword = row["password"].ToString();
+                                string dbfirstname = row["firstname"].ToString();
+                                string dblastname = row["lastname"].ToString();
+                                string dbdob = row["dateofbirth"].ToString();
+                                string dbphonenumber = row["phonenumber"].ToString();
+                                string dbaddress = row["address"].ToString();
+                                if (usertype.Equals("SuperUser"))
+                                {
+                                    txtprofileAccessType.Text = usertype;
+                                    txtprofiledepartment.Visible = false;
+                                    labelprofiledept.Visible = false;
+
+                                }
+                                else
+                                {
+                                    txtprofileAccessType.Text = usertype;
+                                    txtprofiledepartment.Visible = true;
+                                    labelprofiledept.Visible = true;
+                                }
+                                txtprofileemail.Text = username;
+                                txtprofileAccessType.Text = usertype;
+                                txtprofileCalendar.Text = dbdob;
+                                txtprofilepassword.Text = dbpassword;
+                                txtprofilefirstname.Text = dbfirstname;
+                                txtprofilelastname.Text = dblastname;
+                                txtprofilephoneno.Text = dbphonenumber;
+                                txtprofileaddress.Text = dbaddress;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //label_login_errmsg.Text = "Failed to connect to Database\n";
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                // label_login_errmsg.Text = ex.Message;
+            }
             MainView.ActiveViewIndex = 1;
+
         }
 
         protected void Users_Click(object sender, EventArgs e)
