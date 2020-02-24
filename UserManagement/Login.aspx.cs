@@ -18,11 +18,16 @@ namespace UserManagement
             {
                 if (createSchema())
                 {
-                    //label_login_errmsg.Text = "UserManagement Schema created successfully";
+                    label_login_errmsg.Text = "UserManagement Schema created successfully";
                     MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=N!ved!tas0;database=usermanagement");
                     if (createRegisterTable(conn))
                     {
-                        // label_login_errmsg.Text = "Database created successfully\n";
+                         label_login_errmsg.Text = "Database created successfully\n";
+                    }
+
+                    if (createuserstable(conn))
+                    {
+                         label_login_errmsg.Text = "Database created successfully\n";
                     }
                 }
                 else
@@ -191,6 +196,48 @@ namespace UserManagement
 
         }
 
+        protected bool createuserstable(MySqlConnection conn)
+        {
+            try
+            {
+                conn.Open();
+                if (conn != null)
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+                    string strcreateusertable = @"CREATE TABLE IF NOT EXISTS users (userid INT NOT NULL AUTO_INCREMENT,emailaddress varchar(50),
+                    password varchar(45) NOT NULL, confirmpassword varchar(45) NOT NULL, 
+                    firstname varchar(45) NOT NULL,lastname varchar(45) NOT NULL,
+                    dateofbirth date NOT NULL,accesstype varchar(45) NOT NULL,
+                    phonenumber varchar(45) NOT NULL,department varchar(45) NOT NULL,
+                    address varchar(60) NOT NULL,PRIMARY KEY(emailaddress),KEY(userid))";
+                    cmd = new MySqlCommand(strcreateusertable, conn);
+                    if (cmd != null)
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        label_login_errmsg.Text = "Failed to create Users Table\n";
+                        label_login_errmsg.Visible = true;
+                        return false;
+                    }
+                }
+                else
+                {
+                    label_login_errmsg.Text = "Failed to connect to Database\n";
+                    label_login_errmsg.Visible = true;
+                    return false;
+                }
+                conn.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                label_login_errmsg.Text = ex.Message;
+                return false;
+            }
+        }
+
     }
-    
+
 }

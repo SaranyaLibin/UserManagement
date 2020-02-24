@@ -58,6 +58,24 @@ namespace UserManagement {
         protected global::System.Web.UI.WebControls.TextBox txtadduserpswd;
         
         /// <summary>
+        /// labeladdusercnfrmpswd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labeladdusercnfrmpswd;
+        
+        /// <summary>
+        /// txtaddusercnfrmpswd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtaddusercnfrmpswd;
+        
+        /// <summary>
         /// labeladduserfirstname control.
         /// </summary>
         /// <remarks>
@@ -103,13 +121,22 @@ namespace UserManagement {
         protected global::System.Web.UI.WebControls.Label labeladduserdob;
         
         /// <summary>
-        /// adduserCalendar2 control.
+        /// txt_calendar_selecteddate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar adduserCalendar2;
+        protected global::System.Web.UI.WebControls.TextBox txt_calendar_selecteddate;
+        
+        /// <summary>
+        /// adduser_register_calendar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Calendar adduser_register_calendar;
         
         /// <summary>
         /// labelaccesstype control.
@@ -121,13 +148,13 @@ namespace UserManagement {
         protected global::System.Web.UI.WebControls.Label labelaccesstype;
         
         /// <summary>
-        /// adduserDropDownList1 control.
+        /// adduserDropDownaccesstype control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList adduserDropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList adduserDropDownaccesstype;
         
         /// <summary>
         /// labeladduserphno control.
@@ -157,13 +184,13 @@ namespace UserManagement {
         protected global::System.Web.UI.WebControls.Label labeladduserdept;
         
         /// <summary>
-        /// adduserDropDownList2 control.
+        /// adduserDropDowndepartment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList adduserDropDownList2;
+        protected global::System.Web.UI.WebControls.DropDownList adduserDropDowndepartment;
         
         /// <summary>
         /// labeladduseraddress control.
@@ -200,5 +227,14 @@ namespace UserManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnadduserCancel;
+        
+        /// <summary>
+        /// label_adduser_errormsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label label_adduser_errormsg;
     }
 }

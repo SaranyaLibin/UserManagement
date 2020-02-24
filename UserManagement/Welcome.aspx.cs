@@ -150,12 +150,14 @@ namespace UserManagement
 
         protected void Create_Click(object sender, EventArgs e)
         {
-            
+            Session["username"] = username;
+            Response.Redirect("AddUser.aspx");
+
         }
 
         protected void Edit_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AddUser.aspx");
+            
         }
 
         protected void View_Click(object sender, EventArgs e)

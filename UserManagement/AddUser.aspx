@@ -26,6 +26,13 @@
                 <td>
                      <asp:TextBox ID="txtadduserpswd" runat="server"></asp:TextBox></td>
             </tr>
+              <tr>
+                <td>
+                    <asp:Label ID="labeladdusercnfrmpswd" runat="server" Text="Confirm Password" ForeColor="White"></asp:Label>
+                </td>
+                <td>
+                     <asp:TextBox ID="txtaddusercnfrmpswd" runat="server"></asp:TextBox></td>
+            </tr>
             <tr>
                 <td>
                     <asp:Label ID="labeladduserfirstname" runat="server" Text="First Name" ForeColor="White"></asp:Label>
@@ -45,16 +52,8 @@
                     <asp:Label ID="labeladduserdob" runat="server" Text="Date of Birth" ForeColor="White"></asp:Label>
                 </td>
                 <td>
-                    <asp:Calendar ID="adduserCalendar2" runat="server" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px">
-                        <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
-                        <NextPrevStyle Font-Size="8pt" ForeColor="#CCCCFF" />
-                        <OtherMonthDayStyle ForeColor="#999999" />
-                        <SelectedDayStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
-                        <SelectorStyle BackColor="#99CCCC" ForeColor="#336666" />
-                        <TitleStyle BackColor="#003399" BorderColor="#3366CC" BorderWidth="1px" Font-Bold="True" Font-Size="10pt" ForeColor="#CCCCFF" Height="25px" />
-                        <TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
-                        <WeekendDayStyle BackColor="#CCCCFF" />
-                    </asp:Calendar>
+                    <asp:TextBox ID="txt_calendar_selecteddate" runat="server" CssClass="uitextbox" TextMode="Date"></asp:TextBox>
+                    <asp:Calendar ID="adduser_register_calendar" runat="server" OnSelectionChanged="CalendarSelectionChanged" SelectionMode="DayWeekMonth" style="margin-left: 227px"></asp:Calendar>
                  </td>
             </tr>
             <tr>
@@ -62,11 +61,10 @@
                     <asp:Label ID="labelaccesstype" runat="server" Text="Access Type" ForeColor="White"></asp:Label>
                 </td>
                 <td>
-                    <asp:DropDownList ID="adduserDropDownList1" runat="server">
+                    <asp:DropDownList ID="adduserDropDownaccesstype" runat="server">
                         <asp:ListItem></asp:ListItem>
-                        <asp:ListItem>Engineer</asp:ListItem>
-                        <asp:ListItem>Supervisor</asp:ListItem>
-                        <asp:ListItem>Administrator</asp:ListItem>
+                        <asp:ListItem>Regular User</asp:ListItem>
+                        <asp:ListItem>Elevated Access User</asp:ListItem>
                     </asp:DropDownList>
                 </td>
             </tr>
@@ -83,7 +81,7 @@
                     <asp:Label ID="labeladduserdept" runat="server" Text="Department" ForeColor="White"></asp:Label>
                 </td>
                 <td>
-                    <asp:DropDownList ID="adduserDropDownList2" runat="server">
+                    <asp:DropDownList ID="adduserDropDowndepartment" runat="server">
                         <asp:ListItem></asp:ListItem>
                         <asp:ListItem>Electrical</asp:ListItem>
                         <asp:ListItem>Technology</asp:ListItem>
@@ -111,6 +109,7 @@
             </tr>
         </table>
           </div>
+        <asp:Label ID="label_adduser_errormsg" runat="server" ForeColor="White" Text="Label" Visible="False"></asp:Label>
     </form>
 </body>
 </html>
