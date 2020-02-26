@@ -40,6 +40,15 @@ namespace UserManagement {
         protected global::System.Web.UI.WebControls.TextBox txtadduseremail;
         
         /// <summary>
+        /// adduserreqfieldemail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator adduserreqfieldemail;
+        
+        /// <summary>
         /// labeladduserpswd control.
         /// </summary>
         /// <remarks>
@@ -128,15 +137,6 @@ namespace UserManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_adduser_calendar_selecteddate;
-        
-        /// <summary>
-        /// adduser_register_calendar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar adduser_register_calendar;
         
         /// <summary>
         /// labelaccesstype control.

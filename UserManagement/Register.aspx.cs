@@ -16,7 +16,7 @@ namespace UserManagement
         {
             if (!IsPostBack)
             {
-                register_calendar.Visible = false;
+
                 
             }
         }
@@ -86,16 +86,6 @@ namespace UserManagement
                     MvcCaptcha.ResetCaptcha("captchaBox");
                     label_error_register.Visible = false;
                 }
-        }
-        protected void CalendarSelectionChanged(object sender, EventArgs e)
-        {
-            txt_calendar_selecteddate.Text = register_calendar.SelectedDate.ToString("yyyy/MM/dd");
-            register_calendar.Visible = false;
-        }
-
-        protected void imagebtn_calendar_Click(object sender, ImageClickEventArgs e)
-        {
-                  register_calendar.Visible = true;
         }
     }
 }

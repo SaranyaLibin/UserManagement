@@ -70,7 +70,6 @@
                 <td class="auto-style1">
                     <asp:TextBox ID="txt_calendar_selecteddate" runat="server" CssClass="uitextbox" TextMode="Date"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="DOBRequiredFieldValidator3" runat="server" ControlToValidate="txt_calendar_selecteddate" ErrorMessage="Enter Date of Birth " ForeColor="Red"></asp:RequiredFieldValidator>
-                    <asp:Calendar ID="register_calendar" runat="server" OnSelectionChanged="CalendarSelectionChanged" SelectionMode="DayWeekMonth" style="margin-left: 227px"></asp:Calendar>
                 </td>
             </tr>
             <tr>

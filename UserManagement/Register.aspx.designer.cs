@@ -220,15 +220,6 @@ namespace UserManagement {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator DOBRequiredFieldValidator3;
         
         /// <summary>
-        /// register_calendar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar register_calendar;
-        
-        /// <summary>
         /// label_register_phno control.
         /// </summary>
         /// <remarks>
