@@ -14,6 +14,7 @@ namespace UserManagement
         protected void Page_Load(object sender, EventArgs e)
         {
             string username = null;
+            adduser_register_calendar.Visible = false;
             if (Session["username"] == null)
             {
                 username = null;
@@ -31,8 +32,6 @@ namespace UserManagement
                         if (conn != null)
                         {
                             MySqlCommand cmd = new MySqlCommand();
-                            string username = txt_login_username.Text.ToString();
-                            string password = txt_login_password.Text.ToString();
                             //string selectquery = @"SELECT * FROM usermanagement.register WHERE username = '" + username +"'  and password= '" + password + "'";
                             string selectquery = @"SELECT * FROM usermanagement.register WHERE username = '" + username + "'";
                             cmd = new MySqlCommand(selectquery, conn);
@@ -56,20 +55,20 @@ namespace UserManagement
                                        + txtaddusercnfrmpswd.Text.ToString() + "','"
                                        + txtdduserfirstname.Text.ToString() + "'" + ",'"
                                        + txtadduserlastname.Text.ToString() + "','"
-                                       + txt_calendar_selecteddate.Text.ToString() + "','"
+                                       + txt_adduser_calendar_selecteddate.Text.ToString() + "','"
                                        + adduserDropDownaccesstype.Text.ToString() + "','"
                                        + txtadduserphno.Text.ToString() + "','"
                                        + adduserDropDowndepartment.Text.ToString() + "','"
                                        + txtadduseraddress.Text.ToString() + "')";
-                                        cmd = new MySqlCommand(strcreate, conn);
-                                        if (cmd != null)
-                                        {
-                                            cmd.ExecuteNonQuery();
-                                        }
-                                        else
-                                        {
-                                            label_adduser_errormsg.Text = "Failed to insert register Table\n";
-                                        }
+                                    cmd = new MySqlCommand(strcreate, conn);
+                                    if (cmd != null)
+                                    {
+                                        cmd.ExecuteNonQuery();
+                                    }
+                                    else
+                                    {
+                                        label_adduser_errormsg.Text = "Failed to insert users Table\n";
+                                    }
                                 }
                             }
 
@@ -92,4 +91,11 @@ namespace UserManagement
 
             }
         }
+
+        protected void CalendarSelectionChanged(object sender, EventArgs e)
+        {
+            txt_adduser_calendar_selecteddate.Text = adduser_register_calendar.SelectedDate.ToString("yyyy/MM/dd");
+            adduser_register_calendar.Visible = false;
+        }
+    }
 }

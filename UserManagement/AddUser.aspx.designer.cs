@@ -121,13 +121,13 @@ namespace UserManagement {
         protected global::System.Web.UI.WebControls.Label labeladduserdob;
         
         /// <summary>
-        /// txt_calendar_selecteddate control.
+        /// txt_adduser_calendar_selecteddate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_calendar_selecteddate;
+        protected global::System.Web.UI.WebControls.TextBox txt_adduser_calendar_selecteddate;
         
         /// <summary>
         /// adduser_register_calendar control.

@@ -52,7 +52,7 @@
                     <asp:Label ID="labeladduserdob" runat="server" Text="Date of Birth" ForeColor="White"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="txt_calendar_selecteddate" runat="server" CssClass="uitextbox" TextMode="Date"></asp:TextBox>
+                    <asp:TextBox ID="txt_adduser_calendar_selecteddate" runat="server" CssClass="uitextbox" TextMode="Date"></asp:TextBox>
                     <asp:Calendar ID="adduser_register_calendar" runat="server" OnSelectionChanged="CalendarSelectionChanged" SelectionMode="DayWeekMonth" style="margin-left: 227px"></asp:Calendar>
                  </td>
             </tr>
