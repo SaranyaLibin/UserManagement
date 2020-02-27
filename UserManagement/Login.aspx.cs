@@ -11,6 +11,7 @@ namespace UserManagement
 {
     public partial class Login : System.Web.UI.Page
     {
+        string usertype = null;
         protected void Page_Load(object sender, EventArgs e)
         {
             label_login_errmsg.Visible = false;
@@ -93,7 +94,7 @@ namespace UserManagement
                 {
                     MySqlCommand cmd = new MySqlCommand();
                     string strcreate = @"CREATE TABLE IF NOT EXISTS register (id INT NOT NULL AUTO_INCREMENT,username varchar(50),
-                    usertype varchar(45) NOT NULL,password varchar(45) NOT NULL, confirmpassword varchar(45) NOT NULL, 
+                    password varchar(45) NOT NULL, confirmpassword varchar(45) NOT NULL, 
                     firstname varchar(45) NOT NULL,lastname varchar(45) NOT NULL,
                     dateofbirth date NOT NULL,phonenumber varchar(45) NOT NULL,
                     address varchar(60) NOT NULL,PRIMARY KEY(username),KEY(id))";
@@ -161,11 +162,18 @@ namespace UserManagement
                                 {
                                     string dbusername = row["username"].ToString();
                                     string dbpassword = row["password"].ToString();
-                                    string dbusertype = row["usertype"].ToString();
                                     if (username.Equals(dbusername) && (password.Equals(dbpassword)))
                                     {
                                         Session["username"] = username;
-                                        Session["usertype"] = dbusertype;
+                                        if (username.Equals("admin@admin.com"))
+                                        {
+                                            usertype = "SuperUser";
+                                        }
+                                        else
+                                        {
+                                            usertype = "RegularUser";
+                                        }
+                                        Session["usertype"] = usertype;
                                         Response.Redirect("Welcome.aspx", false);
                                     }
                                     else
@@ -204,12 +212,10 @@ namespace UserManagement
                 if (conn != null)
                 {
                     MySqlCommand cmd = new MySqlCommand();
-                    string strcreateusertable = @"CREATE TABLE IF NOT EXISTS users (userid INT NOT NULL AUTO_INCREMENT,emailaddress varchar(50),
-                    password varchar(45) NOT NULL, confirmpassword varchar(45) NOT NULL, 
-                    firstname varchar(45) NOT NULL,lastname varchar(45) NOT NULL,
-                    dateofbirth date NOT NULL,accesstype varchar(45) NOT NULL,
-                    phonenumber varchar(45) NOT NULL,department varchar(45) NOT NULL,
-                    address varchar(60) NOT NULL,PRIMARY KEY(emailaddress),KEY(userid))";
+                    string strcreateusertable = @"CREATE TABLE IF NOT EXISTS users (userid INT NOT NULL AUTO_INCREMENT,username varchar(50),
+                    usertype varchar(45) NOT NULL,emailaddress varchar(50),password varchar(45) NOT NULL, confirmpassword varchar(45) NOT NULL, 
+                    calendar date NOT NULL,accesstype varchar(45) NOT NULL,
+                    department varchar(45) NOT NULL,PRIMARY KEY(emailaddress),KEY(userid))";
                     cmd = new MySqlCommand(strcreateusertable, conn);
                     if (cmd != null)
                     {

@@ -22,6 +22,33 @@ namespace UserManagement {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// labeladdusername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labeladdusername;
+        
+        /// <summary>
+        /// txtaddusername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtaddusername;
+        
+        /// <summary>
+        /// RequiredFieldValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        
+        /// <summary>
         /// labeladduseremail control.
         /// </summary>
         /// <remarks>
@@ -85,42 +112,6 @@ namespace UserManagement {
         protected global::System.Web.UI.WebControls.TextBox txtaddusercnfrmpswd;
         
         /// <summary>
-        /// labeladduserfirstname control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labeladduserfirstname;
-        
-        /// <summary>
-        /// txtdduserfirstname control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtdduserfirstname;
-        
-        /// <summary>
-        /// labeladduserlastname control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labeladduserlastname;
-        
-        /// <summary>
-        /// txtadduserlastname control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtadduserlastname;
-        
-        /// <summary>
         /// labeladduserdob control.
         /// </summary>
         /// <remarks>
@@ -157,24 +148,6 @@ namespace UserManagement {
         protected global::System.Web.UI.WebControls.DropDownList adduserDropDownaccesstype;
         
         /// <summary>
-        /// labeladduserphno control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labeladduserphno;
-        
-        /// <summary>
-        /// txtadduserphno control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtadduserphno;
-        
-        /// <summary>
         /// labeladduserdept control.
         /// </summary>
         /// <remarks>
@@ -191,24 +164,6 @@ namespace UserManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList adduserDropDowndepartment;
-        
-        /// <summary>
-        /// labeladduseraddress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labeladduseraddress;
-        
-        /// <summary>
-        /// txtadduseraddress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtadduseraddress;
         
         /// <summary>
         /// btnadduserSave control.

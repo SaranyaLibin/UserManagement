@@ -26,7 +26,6 @@ namespace UserManagement
             MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=N!ved!tas0;database=usermanagement");
             bool isHuman = captchaBox.Validate(txtCaptcha.Text);
             txtCaptcha.Text = null; // clear previous user input
-            string usertype = null;
             string username = txt_register_emailaddress.Text.ToString();
             if ((Page.IsValid) && (isHuman))
             {
@@ -36,24 +35,15 @@ namespace UserManagement
                         if (conn != null)
                         {
                             MySqlCommand cmd = new MySqlCommand();
-                            if(username.Equals("admin@admin.com"))
-                            {
-                                usertype = "SuperUser";
-                            }
-                            else
-                            {
-                                usertype = "RegularUser";
-                            }
-                    string strcreate = @"insert into register(username,usertype,password,confirmpassword,firstname,lastname,dateofbirth,phonenumber,address) 
+                    string strcreate = @"insert into register(username,password,confirmpassword,firstname,lastname,dateofbirth,phonenumber,address) 
                     values('" + txt_register_emailaddress.Text.ToString() + "','"
-                        + usertype + "','"
-                        + txt_register_pswd.Text.ToString() + "','"
-                        + txt_register_confirmpswd.Text.ToString() + "','"
-                        + txt_register_first_name.Text.ToString() + "'" + ",'"
-                        + txt_register_last_name.Text.ToString() + "','"
-                        + txt_calendar_selecteddate.Text.ToString() + "','"
-                        + txt_register_phno.Text.ToString() + "','"
-                        + txt_register_address.Text.ToString() + "')";
+                            + txt_register_pswd.Text.ToString() + "','"
+                            + txt_register_confirmpswd.Text.ToString() + "','"
+                            + txt_register_first_name.Text.ToString() + "'" + ",'"
+                            + txt_register_last_name.Text.ToString() + "','"
+                            + txt_calendar_selecteddate.Text.ToString() + "','"
+                            + txt_register_phno.Text.ToString() + "','"
+                            + txt_register_address.Text.ToString() + "')";
                             cmd = new MySqlCommand(strcreate, conn);
                             if (cmd != null)
                             {

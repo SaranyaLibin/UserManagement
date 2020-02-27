@@ -12,6 +12,15 @@
     <form id="form1" runat="server">
       <div>
         <table>
+               <tr>
+                <td>
+                    <asp:Label ID="labeladdusername" runat="server" Text="Username" ForeColor="White"></asp:Label>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtaddusername" runat="server" CssClass="uitextbox"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtaddusername" ErrorMessage="PLease enter username"></asp:RequiredFieldValidator>
+                </td>
+            </tr>
             <tr>
                 <td>
                     <asp:Label ID="labeladduseremail" runat="server" Text="Email Address" ForeColor="White"></asp:Label>
@@ -37,21 +46,7 @@
             </tr>
             <tr>
                 <td>
-                    <asp:Label ID="labeladduserfirstname" runat="server" Text="First Name" ForeColor="White"></asp:Label>
-                </td>
-                <td>
-                   <asp:TextBox ID="txtdduserfirstname" runat="server" CssClass="uitextbox"></asp:TextBox></td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:Label ID="labeladduserlastname" runat="server" Text="Last Name" ForeColor="White"></asp:Label>
-                </td>
-                <td>
-                     <asp:TextBox ID="txtadduserlastname" runat="server" CssClass="uitextbox"></asp:TextBox></td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:Label ID="labeladduserdob" runat="server" Text="Date of Birth" ForeColor="White"></asp:Label>
+                    <asp:Label ID="labeladduserdob" runat="server" Text="Business Calendar" ForeColor="White"></asp:Label>
                 </td>
                 <td>
                     <asp:TextBox ID="txt_adduser_calendar_selecteddate" runat="server" CssClass="uitextbox" TextMode="Date"></asp:TextBox>
@@ -65,16 +60,7 @@
                     <asp:DropDownList ID="adduserDropDownaccesstype" runat="server" CssClass="uitextbox">
                         <asp:ListItem></asp:ListItem>
                         <asp:ListItem>Regular User</asp:ListItem>
-                        <asp:ListItem>Elevated Access User</asp:ListItem>
                     </asp:DropDownList>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:Label ID="labeladduserphno" runat="server" Text="Phone Number" ForeColor="White"></asp:Label>
-                </td>
-                <td>
-                    <asp:TextBox ID="txtadduserphno" runat="server" CssClass="uitextbox"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -91,21 +77,13 @@
                     </asp:DropDownList>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <asp:Label ID="labeladduseraddress" runat="server" Text="Address" ForeColor="White"></asp:Label>
-                </td>
-                <td>
-                    <asp:TextBox ID="txtadduseraddress" runat="server" TextMode="MultiLine" CssClass="uitextbox"></asp:TextBox>
-                </td>
-            </tr>
              <tr>
                 <td>
-                    <asp:Button ID="btnadduserSave" runat="server" Text="Save" OnClick="btnadduserSave_Click" />
+                    <asp:Button ID="btnadduserSave" runat="server" Text="Save" OnClick="btnadduserSave_Click" CssClass="uibutton" />
                    
                 </td>
                  <td>
-                      <asp:Button ID="btnadduserCancel" runat="server" Text="Cancel" />
+                      <asp:Button ID="btnadduserCancel" runat="server" Text="Cancel" CssClass="uibutton" OnClick="btnadduserCancel_Click"/>
                  </td>
             </tr>
         </table>

@@ -11,11 +11,22 @@ namespace UserManagement
 {
     public partial class AddUser : System.Web.UI.Page
     {
+        string username = null;
+        string usertype = null;
         protected void Page_Load(object sender, EventArgs e)
-        {
-               
-
-            
+        { 
+        
+            if (Session["username"] == null)
+            {
+                username = null;
+                usertype = null;
+                Response.Redirect("Login.aspx");
+            }
+            else
+            {
+                username = (string)Session["username"];
+                usertype = (string)Session["usertype"];
+            }
         }
 
         protected void btnadduserSave_Click(object sender, EventArgs e)
@@ -27,9 +38,9 @@ namespace UserManagement
                 if (conn != null)
                 {
                     MySqlCommand cmd = new MySqlCommand();
-                    string adduser = txtadduseremail.Text.ToString();
-                    //string selectquery = @"SELECT * FROM usermanagement.register WHERE username = '" + username +"'  and password= '" + password + "'";
-                    string selectquery = @"SELECT * FROM usermanagement.register WHERE username = '" + adduser + "'";
+                    string addusername = txtaddusername.Text.ToString();
+                    string adduseremail = txtadduseremail.Text.ToString();
+                    string selectquery = @"SELECT * FROM usermanagement.register WHERE username = '" + addusername + "'";
                     cmd = new MySqlCommand(selectquery, conn);
                     if (cmd != null)
                     {
@@ -45,17 +56,16 @@ namespace UserManagement
                         }
                         else
                         {
-                            string strcreate = @"insert into users(emailaddress,password,confirmpassword,firstname,lastname,dateofbirth,accesstype,phonenumber,department,address) 
-                                    values('" + txtadduseremail.Text.ToString() + "','"
-                               + txtadduserpswd.Text.ToString() + "','"
-                               + txtaddusercnfrmpswd.Text.ToString() + "','"
-                               + txtdduserfirstname.Text.ToString() + "'" + ",'"
-                               + txtadduserlastname.Text.ToString() + "','"
-                               + txt_adduser_calendar_selecteddate.Text.ToString() + "','"
-                               + adduserDropDownaccesstype.Text.ToString() + "','"
-                               + txtadduserphno.Text.ToString() + "','"
-                               + adduserDropDowndepartment.Text.ToString() + "','"
-                               + txtadduseraddress.Text.ToString() + "')";
+                            string strcreate = @"insert into users(username,usertype,emailaddress,password,confirmpassword,calendar,accesstype,department) 
+                            values('" + addusername + "','"
+                             + usertype + "','"
+                            + txtadduseremail.Text.ToString() + "','"
+                           
+                            + txtadduserpswd.Text.ToString() + "','"
+                            + txtaddusercnfrmpswd.Text.ToString() + "','"
+                            + txt_adduser_calendar_selecteddate.Text.ToString() + "','"
+                            + adduserDropDownaccesstype.Text.ToString() + "','"
+                            + adduserDropDowndepartment.Text.ToString()  + "')";
                             cmd = new MySqlCommand(strcreate, conn);
                             if (cmd != null)
                             {
@@ -67,10 +77,9 @@ namespace UserManagement
                             }
                         }
                     }
-
                     else
                     {
-                        label_adduser_errormsg.Text = "Failed to insert register Table\n";
+                        label_adduser_errormsg.Text = "Failed to insert users table\n";
                     }
                 }
                 else
@@ -84,6 +93,12 @@ namespace UserManagement
                 label_adduser_errormsg.Text = ex.Message;
             }
 
+        }
+
+        protected void btnadduserCancel_Click(object sender, EventArgs e)
+        {
+
+            Response.Redirect("Welcome.aspx");
         }
     }
 }

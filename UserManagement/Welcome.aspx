@@ -6,6 +6,11 @@
 <head runat="server">
     <title></title>
       <link rel = "stylesheet" type = "text/css" href = "usermanagement.css" />
+    <style type="text/css">
+        .auto-style1 {
+            width: 348px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -148,7 +153,7 @@
                     <table style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
     
                           <tr>
-                              <td>
+                              <td class="auto-style1">
                                   <asp:Label ID="Dept" runat="server" ForeColor="White" Text="Department"></asp:Label>
                               </td>
                               <td>
@@ -163,30 +168,33 @@
                               </td>
                           </tr>
                        
-                      <asp:GridView ID="UsersGridView1" runat="server" AutoGenerateColumns="False">
-                          <Columns>
-                              <asp:TemplateField>
-                                  <ItemTemplate>
-                                      <asp:CheckBox ID="CheckBox1" runat="server" />
-                                  </ItemTemplate>
-                              </asp:TemplateField>
-                              <asp:BoundField HeaderText="UserId" >
-                              <HeaderStyle ForeColor="White" />
-                              </asp:BoundField>
-                              <asp:BoundField HeaderText="FirstName" >
-                              <HeaderStyle ForeColor="White" />
-                              </asp:BoundField>
-                              <asp:BoundField HeaderText="LastName">
-                              <HeaderStyle ForeColor="White" />
-                              </asp:BoundField>
-                              <asp:BoundField HeaderText="Access Type">
-                              <HeaderStyle ForeColor="White" />
-                              </asp:BoundField>
-                              <asp:BoundField HeaderText="Department">
-                              <HeaderStyle ForeColor="White" />
-                              </asp:BoundField>
-                          </Columns>
-                      </asp:GridView>
+                        <asp:GridView ID="UsersGridView1" runat="server" AutoGenerateColumns="False">
+                            <Columns>
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <asp:CheckBox ID="CheckBox1" runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Userid" HeaderStyle-ForeColor="White">
+                                    <ItemTemplate>
+                                    <%# Container.DataItemIndex + 1 %>
+                                </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField HeaderText="FirstName" DataField="FirstName">
+                                    <HeaderStyle ForeColor="White" />
+                                </asp:BoundField>
+                                <asp:BoundField HeaderText="LastName" DataField="LastName">
+                                    <HeaderStyle ForeColor="White" />
+                                </asp:BoundField>
+                                <asp:BoundField HeaderText="AccessType" DataField="AccessType">
+                                    <HeaderStyle ForeColor="White" />
+                                </asp:BoundField>
+                                <asp:BoundField HeaderText="Department" DataField="Department">
+                                    <HeaderStyle ForeColor="White" />
+                                </asp:BoundField>
+                            </Columns>
+                            <RowStyle ForeColor="White" />
+                        </asp:GridView>
             </asp:View>
             <asp:View ID="View4" runat="server">
               <table style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
@@ -209,7 +217,7 @@
                                 </td>
                           </tr>
                             
-                      <asp:GridView ID="AccessGridView1" runat="server" AutoGenerateColumns="False">
+                      <asp:GridView ID="AccessGridView1" runat="server">
                           <Columns>
                               <asp:TemplateField>
                                   <ItemTemplate>
@@ -232,6 +240,7 @@
                               <HeaderStyle ForeColor="White" />
                               </asp:BoundField>
                           </Columns>
+                          <RowStyle ForeColor="White" />
                       </asp:GridView>
                      </table>
             </asp:View>

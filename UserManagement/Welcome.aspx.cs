@@ -50,12 +50,10 @@ namespace UserManagement
                     welcome.Visible = true;
                     myprofile.Visible = true;
                 }
-             }
+                populateuserdetails();
+            }
             MainView.ActiveViewIndex = 0;
-            UsersGridView1.DataSource = new object[] { null };
-            UsersGridView1.DataBind();
-            AccessGridView1.DataSource = new object[] { null };
-            AccessGridView1.DataBind();
+           
         }
 
         protected void welcome_Click(object sender, EventArgs e)
@@ -66,6 +64,7 @@ namespace UserManagement
                 string username = Session["username"].ToString();
                 labelwelcome.Text = "Welcome " + username;
                 labelwelcome.Visible = true;
+                
                 MainView.ActiveViewIndex = 0;
             }
         }
@@ -169,6 +168,57 @@ namespace UserManagement
         {
             Session.Clear();
             Response.Redirect("Login.aspx");
+        }
+
+        protected bool populateuserdetails()
+        {
+            MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=N!ved!tas0;database=usermanagement");
+            try
+            {
+                conn.Open();
+                if (conn != null)
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+
+                    string selectquery= @"SELECT  reg.firstname AS FirstName ,reg.lastname AS LastName,user.accesstype AS AccessType,user.department AS Department
+                    FROM  usermanagement.register reg INNER JOIN  usermanagement.users user ON  reg.username= user.username;";
+                    // string selectquery = @"SELECT * FROM usermanagement.users ";
+                    cmd = new MySqlCommand(selectquery, conn);
+                    if (cmd != null)
+                    {
+                        cmd.ExecuteNonQuery();
+                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                        DataSet ds = new DataSet();
+                        da.Fill(ds);
+                        int count = ds.Tables.Count;
+                        if (count == 0)
+                        {
+                           // label_errormsg.Text = "NO user data!!!\n";
+                            UsersGridView1.DataSource = new object[] { null };
+                            UsersGridView1.DataBind();                        }
+                        else
+                        {
+                            UsersGridView1.DataSource = ds;
+                            UsersGridView1.DataBind();
+                        }
+                    }
+                    else
+                    {
+                        //label_adduser_errormsg.Text = "Failed to insert users table\n";
+                    }
+                }
+                else
+                {
+                   // label_adduser_errormsg.Text = "Failed to connect to Database\n";
+                }
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+               // label_adduser_errormsg.Text = ex.Message;
+            }
+
+            return true;
         }
     }
 }
