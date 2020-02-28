@@ -100,7 +100,9 @@ namespace UserManagement
                                 string dbpassword = row["password"].ToString();
                                 string dbfirstname = row["firstname"].ToString();
                                 string dblastname = row["lastname"].ToString();
+                                //string dbdob = row["dateofbirth"].ToString();
                                 string dbdob = row["dateofbirth"].ToString();
+                                dbdob = DateTime.Parse(dbdob).ToString("yyyy-MM-dd");
                                 string dbphonenumber = row["phonenumber"].ToString();
                                 string dbaddress = row["address"].ToString();
                                 if (usertype.Equals("SuperUser"))

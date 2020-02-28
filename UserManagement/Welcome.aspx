@@ -90,7 +90,7 @@
                  </td>
                     
                   <td>
-                      <asp:TextBox ID="txtprofileCalendar" runat="server" TextMode="Password"></asp:TextBox>
+                      <asp:TextBox ID="txtprofileCalendar" runat="server" TextMode="Date"></asp:TextBox>
                  </td>
                 </tr>
                    <tr>
