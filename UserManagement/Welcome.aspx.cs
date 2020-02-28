@@ -15,44 +15,47 @@ namespace UserManagement
         string usertype = null;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["username"] == null)
+            if (!IsPostBack)
             {
-                username = null;
-                Response.Redirect("Login.aspx");
-            }
-            else
-            {
-                username = (string)Session["username"];
-                usertype = (string)Session["usertype"];
-                labelwelcome.Text = "Welcome " + username;
-                labelwelcome.Visible = true;
-                welcome.Visible = false;
-                myprofile.Visible = false;
-                users.Visible = false;
-                accessrequest.Visible = false;
-                if (usertype.Equals("SuperUser"))
+                if (Session["username"] == null)
                 {
-                    welcome.Visible = true;
-                    myprofile.Visible = true;
-                    users.Visible = true;
-                    accessrequest.Visible = true;
-                }
-                else if (usertype.Equals("ElevatedAccessUser"))
-                {
-                    welcome.Visible = true;
-                    myprofile.Visible = true;
-                    users.Visible = true;
+                    username = null;
+                    Response.Redirect("Login.aspx");
                 }
                 else
                 {
-                    //regularuser
-                    //update register while updating request status
-                    welcome.Visible = true;
-                    myprofile.Visible = true;
+                    username = (string)Session["username"];
+                    usertype = (string)Session["usertype"];
+                    labelwelcome.Text = "Welcome " + username;
+                    labelwelcome.Visible = true;
+                    welcome.Visible = false;
+                    myprofile.Visible = false;
+                    users.Visible = false;
+                    accessrequest.Visible = false;
+                    if (usertype.Equals("SuperUser"))
+                    {
+                        welcome.Visible = true;
+                        myprofile.Visible = true;
+                        users.Visible = true;
+                        accessrequest.Visible = true;
+                    }
+                    else if (usertype.Equals("ElevatedAccessUser"))
+                    {
+                        welcome.Visible = true;
+                        myprofile.Visible = true;
+                        users.Visible = true;
+                    }
+                    else
+                    {
+                        //regularuser
+                        //update register while updating request status
+                        welcome.Visible = true;
+                        myprofile.Visible = true;
+                    }
+                    populateuserdetails();
                 }
-                populateuserdetails();
+                MainView.ActiveViewIndex = 0;
             }
-            MainView.ActiveViewIndex = 0;
            
         }
 
@@ -156,12 +159,28 @@ namespace UserManagement
 
         protected void Edit_Click(object sender, EventArgs e)
         {
-            
+
+            foreach (GridViewRow item in UsersGridView1.Rows)
+            { 
+                CheckBox chkbox = (CheckBox)item.FindControl("UsersCheckBox1");
+                if (chkbox.Checked)
+                {
+                    //Do stuff
+                    string editusername = item.Cells[2].Text;
+                    Response.Redirect("EditUser.aspx?editusername=" + editusername);
+                }
+                else
+                {
+                    //label_adduser_errormsg.Text = "Please select to display the user\n";
+                }
+            }
+
+
         }
 
         protected void View_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AddUser.aspx");
+            Response.Redirect("ViewUser.aspx");
         }
 
         protected void welcomeLogOut_Click(object sender, EventArgs e)
@@ -180,7 +199,7 @@ namespace UserManagement
                 {
                     MySqlCommand cmd = new MySqlCommand();
 
-                    string selectquery= @"SELECT  reg.firstname AS FirstName ,reg.lastname AS LastName,user.accesstype AS AccessType,user.department AS Department
+                    string selectquery= @"SELECT user.emailaddress AS UserName,reg.firstname AS FirstName ,reg.lastname AS LastName,user.accesstype AS AccessType,user.department AS Department
                     FROM  usermanagement.register reg INNER JOIN  usermanagement.users user ON  reg.username= user.username;";
                     // string selectquery = @"SELECT * FROM usermanagement.users ";
                     cmd = new MySqlCommand(selectquery, conn);

@@ -172,7 +172,7 @@
                             <Columns>
                                 <asp:TemplateField>
                                     <ItemTemplate>
-                                        <asp:CheckBox ID="CheckBox1" runat="server" />
+                                        <asp:CheckBox ID="UsersCheckBox1" runat="server" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Userid" HeaderStyle-ForeColor="White">
@@ -180,6 +180,9 @@
                                     <%# Container.DataItemIndex + 1 %>
                                 </ItemTemplate>
                                 </asp:TemplateField>
+                                <asp:BoundField HeaderText="UserName" DataField="UserName">
+                                    <HeaderStyle ForeColor="White" />
+                                </asp:BoundField>
                                 <asp:BoundField HeaderText="FirstName" DataField="FirstName">
                                     <HeaderStyle ForeColor="White" />
                                 </asp:BoundField>
