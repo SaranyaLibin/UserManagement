@@ -53,6 +53,7 @@ namespace UserManagement
                         myprofile.Visible = true;
                     }
                     populateuserdetails();
+                    populatedepartment();
                 }
                 MainView.ActiveViewIndex = 0;
             }
@@ -76,6 +77,7 @@ namespace UserManagement
         {
             MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=N!ved!tas0;database=usermanagement");
             string username = (string)Session["username"];
+            string usertype = (string)Session["usertype"];
             try
             {
                 conn.Open();
@@ -235,6 +237,59 @@ namespace UserManagement
             catch (Exception ex)
             {
                // label_adduser_errormsg.Text = ex.Message;
+            }
+
+            return true;
+        }
+
+        protected bool populatedepartment()
+        {
+            MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=N!ved!tas0;database=usermanagement");
+            try
+            {
+                conn.Open();
+                if (conn != null)
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+                   // string selectquery = @"SELECT user.emailaddress AS UserName,reg.firstname AS FirstName ,reg.lastname AS LastName,user.accesstype AS AccessType,user.department AS Department
+                   // FROM  usermanagement.register reg INNER JOIN  usermanagement.users user ON  reg.username= user.username;";
+                    string selectquery = @"SELECT * FROM usermanagement.department ";
+                    cmd = new MySqlCommand(selectquery, conn);
+                    if (cmd != null)
+                    {
+                        cmd.ExecuteNonQuery();
+                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        int count = dt.Rows.Count;
+                        if (count == 0)
+                        {
+                            // label_errormsg.Text = "NO user data!!!\n";
+                            DropDownListUserDept.DataSource = new object[] { null };
+                            DropDownListUserDept.DataBind();
+                        }
+                        else
+                        {
+                                DropDownListUserDept.DataSource = dt;
+                                 DropDownListUserDept.DataTextField = "departmentname";
+                            DropDownListUserDept.DataValueField = "departmentname";
+                            DropDownListUserDept.DataBind();
+                        }
+                    }
+                    else
+                    {
+                        //label_adduser_errormsg.Text = "Failed to insert users table\n";
+                    }
+                }
+                else
+                {
+                    // label_adduser_errormsg.Text = "Failed to connect to Database\n";
+                }
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                // label_adduser_errormsg.Text = ex.Message;
             }
 
             return true;

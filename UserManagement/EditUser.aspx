@@ -9,6 +9,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="scrptEditUser" runat="server"></asp:ScriptManager>
+    <asp:UpdatePanel ID="EditUserUpdatePanel" runat="server">
+    <ContentTemplate>
     <div>
         <table>
                <tr>
@@ -84,6 +87,8 @@
             </tr>
         </table>
     </div>
+          </ContentTemplate> 
+       </asp:UpdatePanel>
     </form>
 </body>
 </html>

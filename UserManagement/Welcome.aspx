@@ -157,7 +157,7 @@
                                   <asp:Label ID="Dept" runat="server" ForeColor="White" Text="Department"></asp:Label>
                               </td>
                               <td>
-                                  <asp:DropDownList ID="DropDownList1" runat="server">
+                                  <asp:DropDownList ID="DropDownListUserDept" runat="server">
                                       <asp:ListItem>All</asp:ListItem>
                                   </asp:DropDownList>
                               </td>

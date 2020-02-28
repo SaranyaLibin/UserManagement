@@ -12,6 +12,7 @@ namespace UserManagement
     public partial class EditUser1 : System.Web.UI.Page
     {
         string editusername = null;
+        string datetime = null;
         protected void Page_Load(object sender, EventArgs e)
         {
                 MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=N!ved!tas0;database=usermanagement");
@@ -23,7 +24,8 @@ namespace UserManagement
                 {
                     //label_login_errmsg = "NO DATA PROVIDED OR COULD NOT BE READ";
                 }
-
+            if (!IsPostBack)
+            {
                 try
                 {
                     conn.Open();
@@ -53,7 +55,9 @@ namespace UserManagement
                                     txtedituseremail.Text = editusername;
                                     txtedituserpswd.Text = row["password"].ToString();
                                     txteditusercnfrmpswd.Text = row["confirmpassword"].ToString();
-                                    txt_edituser_calendar_selecteddate.Text = row["calendar"].ToString();
+                                    datetime = row["calendar"].ToString();
+                                    datetime = DateTime.Parse(datetime).ToString("yyyy-MM-dd");
+                                    txt_edituser_calendar_selecteddate.Text = datetime;
                                     txtedituseraccesstype.Text = row["accesstype"].ToString();
                                     edituserDropDowndepartment.Text = row["department"].ToString();
 
@@ -73,8 +77,7 @@ namespace UserManagement
                 {
                     //label_login_errmsg.Text = ex.Message;
                 }
-            
-
+            }
         }
 
         protected void btnedituserSave_Click(object sender, EventArgs e)
@@ -88,13 +91,14 @@ namespace UserManagement
                     if (conn != null)
                     {
                         MySqlCommand cmd = new MySqlCommand();
+
                         string selectquery = @"UPDATE usermanagement.users SET accesstype='" + txtedituseraccesstype.Text +
                                             "',emailaddress ='" + txtedituseremail.Text + 
                                             "',password ='" + txtedituserpswd.Text +
                                             "',confirmpassword ='" + txteditusercnfrmpswd.Text +
                                             "',calendar ='" + txt_edituser_calendar_selecteddate.Text +
                                              "',department ='" + edituserDropDowndepartment.Text +
-                                              "' WHERE emailaddress ='" + editusername;
+                                              "' WHERE emailaddress ='" + editusername + "'";
                         cmd = new MySqlCommand(selectquery, conn);
                         if (cmd != null)
                         {

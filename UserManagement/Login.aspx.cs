@@ -30,6 +30,16 @@ namespace UserManagement
                     {
                          label_login_errmsg.Text = "Database created successfully\n";
                     }
+
+                    if (createdepartmenttable(conn))
+                    {
+                        label_login_errmsg.Text = "Database created successfully\n";
+                        if(insertdepartmenttable(conn))
+                        {
+                            label_login_errmsg.Text = "Department inserted successfully\n";
+                        }
+
+                    }
                 }
                 else
                 {
@@ -242,6 +252,80 @@ namespace UserManagement
                 label_login_errmsg.Text = ex.Message;
                 return false;
             }
+        }
+
+        protected bool createdepartmenttable(MySqlConnection conn)
+        {
+            try
+            {
+                conn.Open();
+                if (conn != null)
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+                    string strcreatedepttable = @"CREATE TABLE IF NOT EXISTS department (departmentid INT NOT NULL AUTO_INCREMENT,departmentname varchar(50)
+                                                ,PRIMARY KEY(departmentid),
+                                                CONSTRAINT dept_unique UNIQUE (departmentname))";
+                    cmd = new MySqlCommand(strcreatedepttable, conn);
+                    if (cmd != null)
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        label_login_errmsg.Text = "Failed to create Department Table\n";
+                        label_login_errmsg.Visible = true;
+                        return false;
+                    }
+                }
+                else
+                {
+                    label_login_errmsg.Text = "Failed to connect to Database\n";
+                    label_login_errmsg.Visible = true;
+                    return false;
+                }
+                conn.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                label_login_errmsg.Text = ex.Message;
+                return false;
+            }
+        }
+
+
+        protected bool insertdepartmenttable(MySqlConnection conn)
+        {
+               try
+                {
+                    conn.Open();
+                    if (conn != null)
+                    {
+                        MySqlCommand cmd = new MySqlCommand();
+                        string strinsertdept = @"insert into department(departmentname) 
+                        values('Electrical'),('Information Technology'), ('Mechanical'), ('Civil')";
+                        cmd = new MySqlCommand(strinsertdept, conn);
+                        if (cmd != null)
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+                        else
+                        {
+                            label_login_errmsg.Text = "Failed to insert register Table\n";
+                        }
+                    }
+                    else
+                    {
+                        label_login_errmsg.Text = "Failed to connect to Database\n";
+                    }
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                label_login_errmsg.Text = ex.Message;
+            }
+
+            return true;
         }
 
     }
