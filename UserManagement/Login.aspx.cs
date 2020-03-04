@@ -40,6 +40,13 @@ namespace UserManagement
                         }
 
                     }
+
+                   
+                    if (createrequesttable(conn))
+                    {
+                        label_login_errmsg.Text = "Database created successfully\n";
+                    }
+
                 }
                 else
                 {
@@ -222,10 +229,11 @@ namespace UserManagement
                 if (conn != null)
                 {
                     MySqlCommand cmd = new MySqlCommand();
-                    string strcreateusertable = @"CREATE TABLE IF NOT EXISTS users (userid INT NOT NULL AUTO_INCREMENT,username varchar(50),
-                    usertype varchar(45) NOT NULL,emailaddress varchar(50),password varchar(45) NOT NULL, confirmpassword varchar(45) NOT NULL, 
+                    string strcreateusertable = @"CREATE TABLE IF NOT EXISTS users (userid INT NOT NULL AUTO_INCREMENT,username varchar(50)
+                    ,emailaddress varchar(50),password varchar(45) NOT NULL, confirmpassword varchar(45) NOT NULL, 
                     calendar date NOT NULL,accesstype varchar(45) NOT NULL,
-                    department varchar(45) NOT NULL,PRIMARY KEY(emailaddress),KEY(userid))";
+                    department varchar(45) NOT NULL,PRIMARY KEY(emailaddress),KEY(userid),
+                    UNIQUE KEY unique_username (username))";
                     cmd = new MySqlCommand(strcreateusertable, conn);
                     if (cmd != null)
                     {
@@ -234,6 +242,49 @@ namespace UserManagement
                     else
                     {
                         label_login_errmsg.Text = "Failed to create Users Table\n";
+                        label_login_errmsg.Visible = true;
+                        return false;
+                    }
+                }
+                else
+                {
+                    label_login_errmsg.Text = "Failed to connect to Database\n";
+                    label_login_errmsg.Visible = true;
+                    return false;
+                }
+                conn.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                label_login_errmsg.Text = ex.Message;
+                return false;
+            }
+        }
+
+        protected bool createrequesttable(MySqlConnection conn)
+        {
+            try
+            {
+                if (conn.State == ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
+             //   conn.Open();
+                if (conn != null)
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+                    string strcreateusertable = @"CREATE TABLE IF NOT EXISTS request (requestid INT NOT NULL AUTO_INCREMENT,username varchar(50)
+                    ,emailaddress varchar(50) NOT NULL,requeststatus varchar(50),PRIMARY KEY(emailaddress),KEY(requestid),
+                    UNIQUE KEY unique_username (username))";
+                    cmd = new MySqlCommand(strcreateusertable, conn);
+                    if (cmd != null)
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        label_login_errmsg.Text = "Failed to create request Table\n";
                         label_login_errmsg.Visible = true;
                         return false;
                     }

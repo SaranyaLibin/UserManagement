@@ -8,9 +8,9 @@
       <link rel = "stylesheet" type = "text/css" href = "usermanagement.css" />
     <style type="text/css">
         .auto-style1 {
-            width: 348px;
+            width: 104px;
         }
-    </style>
+        </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -38,100 +38,106 @@
               OnClick="AccessRequest_Click" />
           <asp:MultiView ID="MainView" runat="server">
             <asp:View ID="View1" runat="server">
-              <table style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
-                <tr>
-                  <td>
-                      <asp:Label ID="labelwelcome" runat="server" Text="Label" ForeColor="#FFFFCC"></asp:Label>
-                  </td>
-                </tr>
-              </table>
+                <table style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
+                    <tr>
+                        <td>
+                            <asp:Label ID="labelwelcome" runat="server" Text="Label" ForeColor="#FFFFCC"></asp:Label>
+                        </td>
+                    </tr>
+                </table>
             </asp:View>
               <asp:View ID="View2" runat="server">
-              <table style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
-                <tr>
-                  <td>
-                      <asp:Label ID="labelprofilemailaddress" runat="server" Text="Email Address" ForeColor="White"></asp:Label>
-                 </td>
-                    
-                  <td>
-                      <asp:TextBox ID="txtprofileemail" runat="server"></asp:TextBox>
-                 </td>
-                </tr>
-                   <tr>
-                  <td>
-                      <asp:Label ID="labelprofilepswd" runat="server" Text="Password" ForeColor="White"></asp:Label>
-                 </td>
-                    
-                  <td>
-                      <asp:TextBox ID="txtprofilepassword" runat="server"></asp:TextBox>
-                 </td>
-                </tr>
-                   <tr>
-                  <td>
-                      <asp:Label ID="labelprofilefirstname" runat="server" Text="First Name" ForeColor="White"></asp:Label>
-                 </td>
-                    
-                  <td>
-                      <asp:TextBox ID="txtprofilefirstname" runat="server"></asp:TextBox>
-                 </td>
-                </tr>
-                   <tr>
-                  <td>
-                      <asp:Label ID="labelprofilelastname" runat="server" Text="Last Name" ForeColor="White"></asp:Label>
-                 </td>
-                    
-                  <td>
-                      <asp:TextBox ID="txtprofilelastname" runat="server"></asp:TextBox>
-                 </td>
-                </tr>
-                   <tr>
-                  <td>
-                      <asp:Label ID="labelprofiledateofbirth" runat="server" Text="DateofBirth" ForeColor="White"></asp:Label>
-                 </td>
-                    
-                  <td>
-                      <asp:TextBox ID="txtprofileCalendar" runat="server" TextMode="Date"></asp:TextBox>
-                 </td>
-                </tr>
-                   <tr>
-                  <td>
-                      <asp:Label ID="labelprofileaccesstype" runat="server" Text="Access Type" ForeColor="White"></asp:Label>
-                 </td>
-                    
-                  <td>
-                      <asp:TextBox ID="txtprofileAccessType" runat="server"></asp:TextBox>
-                 </td>
-                </tr>
-                   <tr>
-                  <td>
-                      <asp:Label ID="labelprofilephoneno" runat="server" Text="PhoneNumber" ForeColor="White"></asp:Label>
-                 </td>
-                    
-                  <td>
-                      <asp:TextBox ID="txtprofilephoneno" runat="server"></asp:TextBox>
-                 </td>
-                </tr>
-                   <tr>
-                  <td>
-                      <asp:Label ID="labelprofiledept" runat="server" Text="Department" ForeColor="White"></asp:Label>
-                 </td>
-                    
-                  <td>
-                      <asp:TextBox ID="txtprofiledepartment" runat="server"></asp:TextBox>
-                 </td>
-                </tr>
-                   <tr>
-                  <td>
-                      <asp:Label ID="labelprofileaddress" runat="server" Text="Address" ForeColor="White"></asp:Label>
-                 </td>
-                    
-                  <td>
-                      <asp:TextBox ID="txtprofileaddress" runat="server"></asp:TextBox>
-                 </td>
-                </tr>
-              </table>
-  
-             </asp:View>
+                  <table style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
+                      <tr>
+                          <td>
+                              <asp:Label ID="labelprofilemailaddress" runat="server" Text="Email Address" ForeColor="White"></asp:Label>
+                          </td>
+
+                          <td>
+                              <asp:TextBox ID="txtprofileemail" runat="server"></asp:TextBox>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <asp:Label ID="labelprofilepswd" runat="server" Text="Password" ForeColor="White"></asp:Label>
+                          </td>
+
+                          <td>
+                              <asp:TextBox ID="txtprofilepassword" runat="server" TextMode="Password"></asp:TextBox>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <asp:Label ID="labelprofilefirstname" runat="server" Text="First Name" ForeColor="White"></asp:Label>
+                          </td>
+
+                          <td>
+                              <asp:TextBox ID="txtprofilefirstname" runat="server"></asp:TextBox>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <asp:Label ID="labelprofilelastname" runat="server" Text="Last Name" ForeColor="White"></asp:Label>
+                          </td>
+
+                          <td>
+                              <asp:TextBox ID="txtprofilelastname" runat="server"></asp:TextBox>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <asp:Label ID="labelprofiledateofbirth" runat="server" Text="DateofBirth" ForeColor="White"></asp:Label>
+                          </td>
+
+                          <td>
+                              <asp:TextBox ID="txtprofileCalendar" runat="server" TextMode="Date"></asp:TextBox>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <asp:Label ID="labelprofileaccesstype" runat="server" Text="Access Type" ForeColor="White"></asp:Label>
+                          </td>
+
+                          <td>
+                              <asp:TextBox ID="txtprofileAccessType" runat="server"></asp:TextBox>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <asp:Label ID="labelprofilephoneno" runat="server" Text="PhoneNumber" ForeColor="White"></asp:Label>
+                          </td>
+
+                          <td>
+                              <asp:TextBox ID="txtprofilephoneno" runat="server"></asp:TextBox>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <asp:Label ID="labelprofiledept" runat="server" Text="Department" ForeColor="White"></asp:Label>
+                          </td>
+
+                          <td>
+                              <asp:TextBox ID="txtprofiledepartment" runat="server"></asp:TextBox>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <asp:Label ID="labelprofileaddress" runat="server" Text="Address" ForeColor="White"></asp:Label>
+                          </td>
+
+                          <td>
+                              <asp:TextBox ID="txtprofileaddress" runat="server"></asp:TextBox>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <asp:Button ID="btnreqelevatedaccess" runat="server" Text="Request Elevated Access " CssClass="uibutton" OnClick="btnreqelevatedaccess_Click" />
+
+                          </td>
+                      </tr>
+                  </table>
+
+              </asp:View>
             <asp:View ID="View3" runat="server">
               <table style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
       
@@ -157,18 +163,20 @@
                                   <asp:Label ID="Dept" runat="server" ForeColor="White" Text="Department"></asp:Label>
                               </td>
                               <td>
-                                  <asp:DropDownList ID="DropDownListUserDept" runat="server">
+                                  <asp:DropDownList ID="DropDownListUserDept" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownListUserDept_SelectedIndexChanged">
                                       <asp:ListItem>All</asp:ListItem>
                                   </asp:DropDownList>
                               </td>
                               <td>
-                                  <asp:TextBox ID="txtSearch" runat="server" CssClass="btnSearch"></asp:TextBox>
-                                   <asp:Button ID="btnSearch" runat="server" CssClass="uibutton" Text="Search" />
+                                  <asp:TextBox ID="txtSearch" runat="server" CssClass="uisearch"></asp:TextBox>
+                                  </td>
+                              <td>
+                                   <asp:Button ID="btnSearch" runat="server" CssClass="uibutton" Text="Search" OnClick="btnSearch_Click" />
 
                               </td>
                           </tr>
-                       
-                        <asp:GridView ID="UsersGridView1" runat="server" AutoGenerateColumns="False">
+                       </table>
+                        <asp:GridView ID="UsersGridView1" runat="server" AutoGenerateColumns="False" AllowSorting="True" OnSorting="OnSorting">
                             <Columns>
                                 <asp:TemplateField>
                                     <ItemTemplate>
@@ -180,19 +188,19 @@
                                     <%# Container.DataItemIndex + 1 %>
                                 </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:BoundField HeaderText="UserName" DataField="UserName">
+                                <asp:BoundField HeaderText="UserName" DataField="UserName" SortExpression="UserName">
                                     <HeaderStyle ForeColor="White" />
                                 </asp:BoundField>
-                                <asp:BoundField HeaderText="FirstName" DataField="FirstName">
+                                <asp:BoundField HeaderText="FirstName" DataField="FirstName" SortExpression="FirstName">
                                     <HeaderStyle ForeColor="White" />
                                 </asp:BoundField>
-                                <asp:BoundField HeaderText="LastName" DataField="LastName">
+                                <asp:BoundField HeaderText="LastName" DataField="LastName" SortExpression="LastName">
                                     <HeaderStyle ForeColor="White" />
                                 </asp:BoundField>
-                                <asp:BoundField HeaderText="AccessType" DataField="AccessType">
+                                <asp:BoundField HeaderText="AccessType" DataField="AccessType" SortExpression="AccessType">
                                     <HeaderStyle ForeColor="White" />
                                 </asp:BoundField>
-                                <asp:BoundField HeaderText="Department" DataField="Department">
+                                <asp:BoundField HeaderText="Department" DataField="Department" SortExpression="Department">
                                     <HeaderStyle ForeColor="White" />
                                 </asp:BoundField>
                             </Columns>
@@ -207,7 +215,7 @@
                               </td>
                               <td>
                                   <asp:DropDownList ID="AccessDropDownList" runat="server">
-                                      <asp:ListItem>Add</asp:ListItem>
+                                      <asp:ListItem>All</asp:ListItem>
                                   </asp:DropDownList>
                               </td>
                               <td>
@@ -220,7 +228,7 @@
                                 </td>
                           </tr>
                             
-                      <asp:GridView ID="AccessGridView1" runat="server">
+                      <asp:GridView ID="AccessGridView1" runat="server" AutoGenerateColumns="False">
                           <Columns>
                               <asp:TemplateField>
                                   <ItemTemplate>

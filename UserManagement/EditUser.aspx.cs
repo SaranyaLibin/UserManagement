@@ -53,15 +53,20 @@ namespace UserManagement
                                     txteditusername.Text = row["username"].ToString();
                                     txteditusername.Enabled = false;
                                     txtedituseremail.Text = editusername;
-                                    txtedituserpswd.Text = row["password"].ToString();
-                                    txteditusercnfrmpswd.Text = row["confirmpassword"].ToString();
+                                    txtedituserpswd.Attributes["value"] = row["password"].ToString();
+                                    txteditusercnfrmpswd.Attributes["value"] = row["confirmpassword"].ToString();
                                     datetime = row["calendar"].ToString();
                                     datetime = DateTime.Parse(datetime).ToString("yyyy-MM-dd");
                                     txt_edituser_calendar_selecteddate.Text = datetime;
                                     txtedituseraccesstype.Text = row["accesstype"].ToString();
                                     edituserDropDowndepartment.Text = row["department"].ToString();
-
-
+                                    string accesstype = null;
+                                    accesstype = txtedituseraccesstype.Text.ToString();
+                                    if (accesstype.Equals("ElevatedAccessUser"))
+                                    {
+                                        txtedituseraccesstype.Text = "ElevatedAccessUser";
+                                        txtedituseraccesstype.Enabled = false;
+                                    }
                                 }
                             }
                         }
@@ -120,7 +125,7 @@ namespace UserManagement
 
         protected void btnedituserCancel_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("Welcome.aspx");
         }
     }
 }

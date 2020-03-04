@@ -23,11 +23,12 @@ cursor: pointer;
   margin: 24px 0 12px 0;
  
 }
-.btnSearch{
+ .uisearch {
      border-radius: 25px;
  }
  
  .container {
   padding: 10px;
+  
 }
 
