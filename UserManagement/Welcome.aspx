@@ -214,50 +214,55 @@
                                   <asp:Label ID="AccessLabel" runat="server" ForeColor="White" Text="Department"></asp:Label>
                               </td>
                               <td>
-                                  <asp:DropDownList ID="AccessDropDownList" runat="server">
+                                  <asp:DropDownList ID="AccessDropDownList" runat="server" OnSelectedIndexChanged="AccessDropDownList_SelectedIndexChanged" AutoPostBack="True">
                                       <asp:ListItem>All</asp:ListItem>
                                   </asp:DropDownList>
                               </td>
                               <td>
                                   <asp:TextBox ID="txtaccessSearch" runat="server"  CssClass="btnSearch"></asp:TextBox>
-                                  <asp:Button ID="btnaccessSearch" runat="server" CssClass="uibutton" Text="Search" />
+                                  <asp:Button ID="btnaccessSearch" runat="server" CssClass="uibutton" Text="Search" OnClick="btnaccessSearch_Click1" />
                               </td>
                               <td>
                                 <asp:Button ID="Approve" runat="server" Text="Approve" Cssclass="uibutton" OnClick="Create_Click"/>
                                 <asp:Button ID="Decline" runat="server" Text="Decline" Cssclass="uibutton"/>
                                 </td>
                           </tr>
-                            
-                      <asp:GridView ID="AccessGridView1" runat="server" AutoGenerateColumns="False">
+                          </table>  
+                      <asp:GridView ID="AccessGridView1" runat="server" AutoGenerateColumns="False" AllowSorting="True" OnSorting="AccessGridView1_Sorting"  EmptyDataText="No records available" EmptyDataRowStyle-ForeColor="White">
                           <Columns>
                               <asp:TemplateField>
                                   <ItemTemplate>
                                       <asp:CheckBox ID="CheckBox1" runat="server" />
                                   </ItemTemplate>
                               </asp:TemplateField>
-                              <asp:BoundField HeaderText="UserId" >
+                              <asp:TemplateField HeaderText="Requestid" HeaderStyle-ForeColor="White">
+                                    <ItemTemplate>
+                                    <%# Container.DataItemIndex + 1 %>
+                                </ItemTemplate>
+                                    <HeaderStyle ForeColor="White" />
+                                </asp:TemplateField>
+                               <asp:BoundField HeaderText="UserName" DataField="UserName" SortExpression="UserName">
+                                    <HeaderStyle ForeColor="White" />
+                                </asp:BoundField>
+                              <asp:BoundField HeaderText="FirstName" DataField="FirstName" SortExpression="FirstName">
                               <HeaderStyle ForeColor="White" />
                               </asp:BoundField>
-                              <asp:BoundField HeaderText="FirstName" >
+                              <asp:BoundField HeaderText="LastName" DataField="LastName" SortExpression="LastName">
                               <HeaderStyle ForeColor="White" />
                               </asp:BoundField>
-                              <asp:BoundField HeaderText="LastName">
+                              <asp:BoundField HeaderText="Department" DataField="Department" SortExpression="Department">
                               <HeaderStyle ForeColor="White" />
                               </asp:BoundField>
-                              <asp:BoundField HeaderText="Access Type">
-                              <HeaderStyle ForeColor="White" />
-                              </asp:BoundField>
-                              <asp:BoundField HeaderText="Request Status">
+                              <asp:BoundField HeaderText="RequestStatus" DataField="RequestStatus" SortExpression="RequestStatus">
                               <HeaderStyle ForeColor="White" />
                               </asp:BoundField>
                           </Columns>
+                          <EmptyDataRowStyle ForeColor="White" />
                           <RowStyle ForeColor="White" />
                       </asp:GridView>
-                     </table>
+                     
             </asp:View>
           </asp:MultiView>
- 
-
     </div>
     </ContentTemplate>
     </asp:UpdatePanel>

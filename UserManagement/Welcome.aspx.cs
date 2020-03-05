@@ -64,8 +64,9 @@ namespace UserManagement
                         Delete.Visible = false;
                         btnreqelevatedaccess.Visible = true;
                     }
-                    //populateuserdetails("",null
+
                     populateuserdetails(null);
+                    populaterequestdetails(null);
                     populatedepartment();
                 }
                 MainView.ActiveViewIndex = 0;
@@ -230,7 +231,6 @@ namespace UserManagement
             Response.Redirect("Login.aspx");
         }
 
-        // protected bool populateuserdetails(string valuetoSearch, string sortExpression = null)
         protected bool populateuserdetails(string sortExpression = null)
         {
             string lstdeptdropdown = null;
@@ -321,8 +321,6 @@ namespace UserManagement
 
         protected void OnSorting(object sender, GridViewSortEventArgs e)
         {
-            string valuetoSearch = txtSearch.Text;
-            //populateuserdetails(valuetoSearch,e.SortExpression);
             populateuserdetails( e.SortExpression);
         }
         protected bool populatedepartment()
@@ -355,6 +353,12 @@ namespace UserManagement
                             DropDownListUserDept.DataTextField  = "departmentname";
                             DropDownListUserDept.DataValueField = "departmentname";
                             DropDownListUserDept.DataBind();
+
+                            AccessDropDownList.DataSource = dt;
+                            AccessDropDownList.DataTextField = "departmentname";
+                            AccessDropDownList.DataValueField = "departmentname";
+                            AccessDropDownList.DataBind();
+
                         }
                     }
                     else
@@ -378,19 +382,11 @@ namespace UserManagement
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            string valuetoSearch = txtSearch.Text.ToString();
-            //populateuserdetails(valuetoSearch,null);
             populateuserdetails( null);
         }
 
         protected void DropDownListUserDept_SelectedIndexChanged(object sender, EventArgs e)
         {
-           // string valuetoSearch = DropDownListUserDept.Text.ToString();
-           /* if(valuetoSearch.Equals("All"))
-            {
-                valuetoSearch = "";
-            }*/
-            //populateuserdetails(valuetoSearch,null);
             populateuserdetails(null);
         }
 
@@ -427,10 +423,106 @@ namespace UserManagement
         }
     }
 
+        protected bool populaterequestdetails(string sortExpression = null)
+        {
+            string lstdeptdropdown = null;
+            if (AccessDropDownList.Text.ToString().Equals("All"))
+            {
+                lstdeptdropdown = "";
+            }
+            else
+            {
+                lstdeptdropdown = AccessDropDownList.Text.ToString();
+            }
+
+            MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=N!ved!tas0;database=usermanagement");
+            try
+            {
+                conn.Open();
+                if (conn != null)
+                {
+                    MySqlCommand cmd = new MySqlCommand();
+                    string query = @"SELECT user.emailaddress AS UserName,reg.firstname AS FirstName ,reg.lastname AS LastName,user.department AS Department,
+                    req.requeststatus AS RequestStatus FROM  usermanagement.register reg INNER JOIN  usermanagement.users user ON  reg.username= user.username
+                     INNER JOIN  usermanagement.request req ON req.emailaddress= user.emailaddress";
+                    query += " WHERE user.department LIKE '%" + lstdeptdropdown + "%'";
+                    query += " AND (req.emailaddress LIKE '%" + txtaccessSearch.Text + "%'";
+                    query += " OR reg.firstname LIKE '%" + txtaccessSearch.Text + "%'";
+                    query += " OR reg.lastname LIKE '%" + txtaccessSearch.Text + "%'";
+                    query += " OR req.requeststatus LIKE '%" + txtaccessSearch.Text + "%'";
+                    query += " OR user.department LIKE '%" + txtaccessSearch.Text + "%')";
+                    cmd = new MySqlCommand(query, conn);
+                    if (cmd != null)
+                    {
+                        cmd.ExecuteNonQuery();
+                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        int count = dt.Rows.Count;
+                        if (count == 0)
+                        {
+                            // label_errormsg.Text = "NO req data!!!\n";
+                            DataTable emptydt = new DataTable();
+                            AccessGridView1.DataSource = emptydt;
+                            AccessGridView1.DataBind();
+                        }
+                        else
+                        {
+                            if (sortExpression != null)
+                            {
+                                DataView dv = dt.AsDataView();
+                                this.SortDirection = this.SortDirection == "ASC" ? "DESC" : "ASC";
+                                dv.Sort = sortExpression + " " + this.SortDirection;
+                                AccessGridView1.DataSource = dv;
+                                AccessGridView1.DataBind();
+                            }
+                            else
+                            {
+                                AccessGridView1.DataSource = dt;
+                                AccessGridView1.DataBind();
+                            }
+
+
+                        }
+                    }
+                    else
+                    {
+                        //label_adduser_errormsg.Text = "Failed to insert users table\n";
+                    }
+                }
+                else
+                {
+                    // label_adduser_errormsg.Text = "Failed to connect to Database\n";
+                }
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                // label_adduser_errormsg.Text = ex.Message;
+            }
+
+            return true;
+        }
+
         private string SortDirection
         {
             get { return ViewState["SortDirection"] != null ? ViewState["SortDirection"].ToString() : "ASC"; }
             set { ViewState["SortDirection"] = value; }
+        }
+
+        protected void AccessDropDownList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            populaterequestdetails(null);
+        }
+
+        protected void AccessGridView1_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            populaterequestdetails(e.SortExpression);
+        }
+
+        protected void btnaccessSearch_Click1(object sender, EventArgs e)
+        {
+            populaterequestdetails(null);
         }
     }
 }
