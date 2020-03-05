@@ -354,7 +354,7 @@ namespace UserManagement
                     {
                         MySqlCommand cmd = new MySqlCommand();
                         string strinsertdept = @"insert into department(departmentname) 
-                        values('Electrical'),('Information Technology'), ('Mechanical'), ('Civil')";
+                        values('All'),('Electrical'),('Information Technology'),('Mechanical'),('Civil')";
                         cmd = new MySqlCommand(strinsertdept, conn);
                         if (cmd != null)
                         {

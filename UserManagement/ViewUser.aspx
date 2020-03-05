@@ -13,61 +13,60 @@
         <table>
             <tr>
                 <td>
-                    <asp:Label ID="labeleditusername" runat="server" Text="Username" ForeColor="White"></asp:Label>
+                    <asp:Label ID="labelviewfirstname" runat="server" Text="FirstName:" ForeColor="White"></asp:Label>
                 </td>
                 <td>
-                    <asp:Label ID="editusernamevalue" runat="server" ForeColor="White"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:Label ID="labeleditemail" runat="server" Text="EmailAddress" ForeColor="White"></asp:Label>
-                </td>
-                <td>
-                    <asp:Label ID="editemailvalue" runat="server" ForeColor="White"></asp:Label>
+                    <asp:Label ID="labelviewfnvalue" runat="server" ForeColor="White"></asp:Label>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <asp:Label ID="labeledituserpswd" runat="server" Text="Password" ForeColor="White"></asp:Label>
+                    <asp:Label ID="labelviewlastname" runat="server" Text="LastName:" ForeColor="White"></asp:Label>
                 </td>
                 <td>
-                    <asp:Label ID="editpswdvalue" runat="server" ForeColor="White"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:Label ID="labelcnfrmpswd" runat="server" Text="ConfirmPassword" ForeColor="White"></asp:Label>
-                </td>
-                <td>
-                    <asp:Label ID="editconfrmpswdvalue" runat="server" ForeColor="White"></asp:Label>
+                    <asp:Label ID="labelviewln" runat="server" ForeColor="White"></asp:Label>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <asp:Label ID="labeleditcalendar" runat="server" Text="BusinessCalendar  " ForeColor="White"></asp:Label>
+                    <asp:Label ID="labelviewusername" runat="server" Text="Username:" ForeColor="White"></asp:Label>
                 </td>
                 <td>
-                    <asp:Label ID="editcalendarvalue" runat="server" ForeColor="White"></asp:Label>
+                    <asp:Label ID="viewusernamevalue" runat="server" ForeColor="White"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:Label ID="labelviewemail" runat="server" Text="EmailAddress:" ForeColor="White"></asp:Label>
+                </td>
+                <td>
+                    <asp:Label ID="viewemailvalue" runat="server" ForeColor="White"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:Label ID="labelviewcalendar" runat="server" Text="BusinessCalendar:" ForeColor="White"></asp:Label>
+                </td>
+                <td>
+                    <asp:Label ID="viewcalendarvalue" runat="server" ForeColor="White"></asp:Label>
                 </td>
                 </tr>
             <tr>
                     <td>
-                        <asp:Label ID="labeleditaccesstype" runat="server" Text="AccessType" ForeColor="White"></asp:Label>
+                        <asp:Label ID="labelviewaccesstype" runat="server" Text="AccessType:" ForeColor="White"></asp:Label>
                     </td>
                     <td>
-                        <asp:Label ID="accesstypevalue" runat="server" ForeColor="White"></asp:Label>
+                        <asp:Label ID="viewaccesstypevalue" runat="server" ForeColor="White"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <asp:Label ID="labeleditdept" runat="server" Text="Department" ForeColor="White"></asp:Label>
+                        <asp:Label ID="labelviewdept" runat="server" Text="Department:" ForeColor="White"></asp:Label>
                     </td>
                     <td>
-                        <asp:Label ID="editdeptvalue" runat="server" ForeColor="White"></asp:Label>
+                        <asp:Label ID="viewdeptvalue" runat="server" ForeColor="White"></asp:Label>
                     </td>
                 </tr>
-            </tr>
         </table>
     </div>
     </form>

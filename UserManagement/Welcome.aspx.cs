@@ -64,7 +64,8 @@ namespace UserManagement
                         Delete.Visible = false;
                         btnreqelevatedaccess.Visible = true;
                     }
-                    populateuserdetails("",null);
+                    //populateuserdetails("",null
+                    populateuserdetails(null);
                     populatedepartment();
                 }
                 MainView.ActiveViewIndex = 0;
@@ -103,8 +104,9 @@ namespace UserManagement
                          selectquery = @"SELECT * FROM  usermanagement.register WHERE username = '" + username + "'";
                     }
                     else
-                    { 
-                         selectquery = @"SELECT reg.*,user.department FROM  usermanagement.register reg INNER JOIN  usermanagement.users user ON reg.username = '" + username + "'";
+                    {
+                        selectquery = @"SELECT reg.*,user.department FROM  usermanagement.register reg INNER JOIN  usermanagement.users user ON reg.username = user.username
+                        WHERE reg.username = '" + username + "'";
                     }
                     cmd = new MySqlCommand(selectquery, conn);
                     if (cmd != null)
@@ -205,7 +207,21 @@ namespace UserManagement
 
         protected void View_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ViewUser.aspx");
+            foreach (GridViewRow item in UsersGridView1.Rows)
+            {
+                CheckBox chkbox = (CheckBox)item.FindControl("UsersCheckBox1");
+                if (chkbox.Checked)
+                {
+                    //Do stuff
+                    string viewusername = item.Cells[2].Text;
+                    Session["viewusername"] = viewusername;
+                    Response.Redirect("ViewUser.aspx?viewusername=" + viewusername);
+                }
+                else
+                {
+                    //label_adduser_errormsg.Text = "Please select to display the user\n";
+                }
+            }
         }
 
         protected void welcomeLogOut_Click(object sender, EventArgs e)
@@ -214,8 +230,19 @@ namespace UserManagement
             Response.Redirect("Login.aspx");
         }
 
-        protected bool populateuserdetails(string valuetoSearch, string sortExpression = null)
+        // protected bool populateuserdetails(string valuetoSearch, string sortExpression = null)
+        protected bool populateuserdetails(string sortExpression = null)
         {
+            string lstdeptdropdown = null;
+            if (DropDownListUserDept.Text.ToString().Equals("All"))
+            {
+                lstdeptdropdown = "";
+            }
+            else
+            {
+                lstdeptdropdown = DropDownListUserDept.Text.ToString();
+            }
+
             MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=N!ved!tas0;database=usermanagement");
             try
             {
@@ -230,11 +257,12 @@ namespace UserManagement
                     //like '" + valuetoSearch + "%'";
                     string query = @"SELECT user.emailaddress AS UserName,reg.firstname AS FirstName ,reg.lastname AS LastName,user.accesstype AS AccessType,user.department AS Department
                     FROM  usermanagement.register reg INNER JOIN  usermanagement.users user ON  reg.username= user.username";
-                    query += " WHERE user.emailaddress LIKE '%" + valuetoSearch + "%'";
-                    query += " OR reg.firstname LIKE '%" + valuetoSearch + "%'";
-                    query += " OR reg.lastname LIKE '%" + valuetoSearch + "%'";
-                    query += " OR user.accesstype LIKE '%" + valuetoSearch + "%'";
-                    query += " OR user.department LIKE '%" + valuetoSearch + "%'";
+                    query += " WHERE user.department LIKE '%" + lstdeptdropdown + "%'";
+                    query += " AND (user.emailaddress LIKE '%" + txtSearch.Text + "%'";
+                    query += " OR reg.firstname LIKE '%" + txtSearch.Text + "%'";
+                    query += " OR reg.lastname LIKE '%" + txtSearch.Text + "%'";
+                    query += " OR user.accesstype LIKE '%" + txtSearch.Text + "%'";
+                    query += " OR user.department LIKE '%" + txtSearch.Text + "%')";
                     cmd = new MySqlCommand(query, conn);
                     if (cmd != null)
                     {
@@ -245,8 +273,9 @@ namespace UserManagement
                         int count = dt.Rows.Count;
                         if (count == 0)
                         {
-                           // label_errormsg.Text = "NO user data!!!\n";
-                            UsersGridView1.DataSource = new object[] { null };
+                            // label_errormsg.Text = "NO user data!!!\n";
+                            DataTable emptydt = new DataTable();
+                            UsersGridView1.DataSource = emptydt;
                             UsersGridView1.DataBind();
                         }
                         else
@@ -293,7 +322,8 @@ namespace UserManagement
         protected void OnSorting(object sender, GridViewSortEventArgs e)
         {
             string valuetoSearch = txtSearch.Text;
-            populateuserdetails(valuetoSearch,e.SortExpression);
+            //populateuserdetails(valuetoSearch,e.SortExpression);
+            populateuserdetails( e.SortExpression);
         }
         protected bool populatedepartment()
         {
@@ -349,20 +379,53 @@ namespace UserManagement
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             string valuetoSearch = txtSearch.Text.ToString();
-            populateuserdetails(valuetoSearch,null);
+            //populateuserdetails(valuetoSearch,null);
+            populateuserdetails( null);
         }
 
         protected void DropDownListUserDept_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string valuetoSearch = DropDownListUserDept.Text.ToString();
-            populateuserdetails(valuetoSearch,null);
+           // string valuetoSearch = DropDownListUserDept.Text.ToString();
+           /* if(valuetoSearch.Equals("All"))
+            {
+                valuetoSearch = "";
+            }*/
+            //populateuserdetails(valuetoSearch,null);
+            populateuserdetails(null);
         }
 
         protected void btnreqelevatedaccess_Click(object sender, EventArgs e)
         {
             buttonclicked = true;
-
+            MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=N!ved!tas0;database=usermanagement");
+            if (Page.IsValid)
+            {
+                try
+                {
+                    conn.Open();
+                    if (conn != null)
+                    {
+                        MySqlCommand cmd = new MySqlCommand();
+                        string selectquery = @"UPDATE usermanagement.request SET requeststatus = 'Active' WHERE username ='" + txtprofileemail.Text.ToString() + "'";
+                        cmd = new MySqlCommand(selectquery, conn);
+                        if (cmd != null)
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    else
+                    {
+                        //label_login_errmsg.Text = "Failed to connect to Database\n";
+                    }
+                    conn.Close();
+                }
+                catch (Exception ex)
+                {
+                    //label_login_errmsg.Text = ex.Message;
+                }
+            
         }
+    }
 
         private string SortDirection
         {

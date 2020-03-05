@@ -176,7 +176,7 @@
                               </td>
                           </tr>
                        </table>
-                        <asp:GridView ID="UsersGridView1" runat="server" AutoGenerateColumns="False" AllowSorting="True" OnSorting="OnSorting">
+                        <asp:GridView ID="UsersGridView1" runat="server" AutoGenerateColumns="False" AllowSorting="True" OnSorting="OnSorting" EmptyDataText="No records available" EmptyDataRowStyle-ForeColor="White">
                             <Columns>
                                 <asp:TemplateField>
                                     <ItemTemplate>

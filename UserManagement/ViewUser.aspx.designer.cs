@@ -22,129 +22,129 @@ namespace UserManagement {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// labeleditusername control.
+        /// labelviewfirstname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labeleditusername;
+        protected global::System.Web.UI.WebControls.Label labelviewfirstname;
         
         /// <summary>
-        /// editusernamevalue control.
+        /// labelviewfnvalue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label editusernamevalue;
+        protected global::System.Web.UI.WebControls.Label labelviewfnvalue;
         
         /// <summary>
-        /// labeleditemail control.
+        /// labelviewlastname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labeleditemail;
+        protected global::System.Web.UI.WebControls.Label labelviewlastname;
         
         /// <summary>
-        /// editemailvalue control.
+        /// labelviewln control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label editemailvalue;
+        protected global::System.Web.UI.WebControls.Label labelviewln;
         
         /// <summary>
-        /// labeledituserpswd control.
+        /// labelviewusername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labeledituserpswd;
+        protected global::System.Web.UI.WebControls.Label labelviewusername;
         
         /// <summary>
-        /// editpswdvalue control.
+        /// viewusernamevalue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label editpswdvalue;
+        protected global::System.Web.UI.WebControls.Label viewusernamevalue;
         
         /// <summary>
-        /// labelcnfrmpswd control.
+        /// labelviewemail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labelcnfrmpswd;
+        protected global::System.Web.UI.WebControls.Label labelviewemail;
         
         /// <summary>
-        /// editconfrmpswdvalue control.
+        /// viewemailvalue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label editconfrmpswdvalue;
+        protected global::System.Web.UI.WebControls.Label viewemailvalue;
         
         /// <summary>
-        /// labeleditcalendar control.
+        /// labelviewcalendar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labeleditcalendar;
+        protected global::System.Web.UI.WebControls.Label labelviewcalendar;
         
         /// <summary>
-        /// editcalendarvalue control.
+        /// viewcalendarvalue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label editcalendarvalue;
+        protected global::System.Web.UI.WebControls.Label viewcalendarvalue;
         
         /// <summary>
-        /// labeleditaccesstype control.
+        /// labelviewaccesstype control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labeleditaccesstype;
+        protected global::System.Web.UI.WebControls.Label labelviewaccesstype;
         
         /// <summary>
-        /// accesstypevalue control.
+        /// viewaccesstypevalue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label accesstypevalue;
+        protected global::System.Web.UI.WebControls.Label viewaccesstypevalue;
         
         /// <summary>
-        /// labeleditdept control.
+        /// labelviewdept control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labeleditdept;
+        protected global::System.Web.UI.WebControls.Label labelviewdept;
         
         /// <summary>
-        /// editdeptvalue control.
+        /// viewdeptvalue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label editdeptvalue;
+        protected global::System.Web.UI.WebControls.Label viewdeptvalue;
     }
 }

@@ -72,16 +72,16 @@ namespace UserManagement
                             {
                                 label_adduser_errormsg.Text = "Failed to insert request Table\n";
                             }
-                            bool clicked = (bool)Session["buttonclicked"];
+                           // bool clicked = (bool)Session["buttonclicked"];
                             string reqstatus = null;
-                            if (clicked)
+                            /*if (clicked)
                             {
                                 reqstatus = "Active";
                             }
                             else
-                            {
+                            {*/
                                 reqstatus = "NA";
-                            }
+                           // }
                         
                             string strinserteq = @"insert into request(username,emailaddress,requeststatus) 
                             values('" + addusername + "','"
