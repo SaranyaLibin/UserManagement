@@ -524,5 +524,136 @@ namespace UserManagement
         {
             populaterequestdetails(null);
         }
+
+        protected void Approve_Click(object sender, EventArgs e)
+        {
+            MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=N!ved!tas0;database=usermanagement");
+            foreach (GridViewRow item in AccessGridView1.Rows)
+            {
+                CheckBox chkbox = (CheckBox)item.FindControl("AccessCheckBox1");
+                if (chkbox.Checked)
+                {
+                    //Do stuff
+                    string approveusername = item.Cells[2].Text;
+                    try
+                    {
+                        conn.Open();
+                        if (conn != null)
+                        {
+                            MySqlCommand cmd = new MySqlCommand();
+                            string selectquery = @"UPDATE usermanagement.request SET requeststatus = 'Approved' WHERE emailaddress ='" + approveusername + "'";
+                            cmd = new MySqlCommand(selectquery, conn);
+                            if (cmd != null)
+                            {
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+                        else
+                        {
+                            //label_login_errmsg.Text = "Failed to connect to Database\n";
+                        }
+                        populaterequestdetails(null);
+                        conn.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        //label_login_errmsg.Text = ex.Message;
+                    }
+                }
+                else
+                {
+                    //label_adduser_errormsg.Text = "Please select to display the user\n";
+                }
+            }
+        
+    }
+
+        protected void Decline_Click(object sender, EventArgs e)
+        {
+            MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=N!ved!tas0;database=usermanagement");
+            foreach (GridViewRow item in AccessGridView1.Rows)
+            {
+                CheckBox chkbox = (CheckBox)item.FindControl("AccessCheckBox1");
+                if (chkbox.Checked)
+                {
+                    //Do stuff
+                    string declineusername = item.Cells[2].Text;
+                    try
+                    {
+                        conn.Open();
+                        if (conn != null)
+                        {
+                            MySqlCommand cmd = new MySqlCommand();
+                            string selectquery = @"UPDATE usermanagement.request SET requeststatus = 'Declined' WHERE emailaddress ='" + declineusername + "'";
+                            cmd = new MySqlCommand(selectquery, conn);
+                            if (cmd != null)
+                            {
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+                        else
+                        {
+                            //label_login_errmsg.Text = "Failed to connect to Database\n";
+                        }
+                        populaterequestdetails(null);
+                        conn.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        //label_login_errmsg.Text = ex.Message;
+                    }
+                }
+                else
+                {
+                    //label_adduser_errormsg.Text = "Please select to display the user\n";
+                }
+            }
+
+        }
+
+        protected void Delete_Click(object sender, EventArgs e)
+        {
+            MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=N!ved!tas0;database=usermanagement");
+            foreach (GridViewRow item in UsersGridView1.Rows)
+            {
+                CheckBox chkbox = (CheckBox)item.FindControl("UsersCheckBox1");
+                if (chkbox.Checked)
+                {
+                    //Do stuff
+                    string deleteusername = item.Cells[2].Text;
+                    try
+                    {
+                        conn.Open();
+                        if (conn != null)
+                        {
+                            MySqlCommand cmd = new MySqlCommand();
+                            string selectquery = @"DELETE usermanagement.users, usermanagement.request
+                            FROM usermanagement.users 
+                            INNER JOIN usermanagement.request ON usermanagement.users.emailaddress = usermanagement.request.emailaddress
+                            WHERE usermanagement.users.emailaddress ='" + deleteusername + "'";
+                            cmd = new MySqlCommand(selectquery, conn);
+                            if (cmd != null)
+                            {
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+                        else
+                        {
+                            //label_login_errmsg.Text = "Failed to connect to Database\n";
+                        }
+                        conn.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        //label_login_errmsg.Text = ex.Message;
+                    }
+                }
+                else
+                {
+                    //label_adduser_errormsg.Text = "Please select to display the user\n";
+                }
+            }
+
+        }
     }
 }

@@ -152,7 +152,7 @@
                             <asp:Button ID="Edit" runat="server" Text="Edit" Cssclass="uibutton" OnClick="Edit_Click"/>
                         </td>
                         <td>
-                            <asp:Button ID="Delete" runat="server" Text="Delete" Cssclass="uibutton"/>
+                            <asp:Button ID="Delete" runat="server" Text="Delete" Cssclass="uibutton" OnClick="Delete_Click"/>
                         </td>
                      </tr>
                     </table>
@@ -180,7 +180,7 @@
                             <Columns>
                                 <asp:TemplateField>
                                     <ItemTemplate>
-                                        <asp:CheckBox ID="UsersCheckBox1" runat="server" />
+                                        <asp:CheckBox ID="UsersCheckBox1" runat="server" AutoPostBack="True" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Userid" HeaderStyle-ForeColor="White">
@@ -223,8 +223,10 @@
                                   <asp:Button ID="btnaccessSearch" runat="server" CssClass="uibutton" Text="Search" OnClick="btnaccessSearch_Click1" />
                               </td>
                               <td>
-                                <asp:Button ID="Approve" runat="server" Text="Approve" Cssclass="uibutton" OnClick="Create_Click"/>
-                                <asp:Button ID="Decline" runat="server" Text="Decline" Cssclass="uibutton"/>
+                                <asp:Button ID="Approve" runat="server" Text="Approve" Cssclass="uibutton" OnClick="Approve_Click" />
+                                  </td>
+                               <td>
+                                <asp:Button ID="Decline" runat="server" Text="Decline" Cssclass="uibutton" OnClick="Decline_Click"/>
                                 </td>
                           </tr>
                           </table>  
@@ -232,7 +234,7 @@
                           <Columns>
                               <asp:TemplateField>
                                   <ItemTemplate>
-                                      <asp:CheckBox ID="CheckBox1" runat="server" />
+                                      <asp:CheckBox ID="AccessCheckBox1" runat="server" />
                                   </ItemTemplate>
                               </asp:TemplateField>
                               <asp:TemplateField HeaderText="Requestid" HeaderStyle-ForeColor="White">
