@@ -158,8 +158,18 @@ namespace UserManagement
                         MySqlCommand cmd = new MySqlCommand();
                         string username = txt_login_username.Text.ToString();
                         string password = txt_login_password.Text.ToString();
+                        string selectquery = null;
                         //string selectquery = @"SELECT * FROM usermanagement.register WHERE username = '" + username +"'  and password= '" + password + "'";
-                        string selectquery = @"SELECT * FROM usermanagement.register WHERE username = '" + username + "'";
+                        //string selectquery = @"SELECT * FROM usermanagement.register WHERE username = '" + username + "'";
+                       if (username.Equals("admin@admin.com"))
+                        {
+                             selectquery = @"SELECT * FROM  usermanagement.register WHERE username = '" + username + "'";
+                        }
+                        else
+                        {
+                            selectquery = @"SELECT reg.*,user.accesstype FROM  usermanagement.register reg INNER JOIN  usermanagement.users user ON reg.username = user.username
+                            WHERE reg.username = '" + username + "'";
+                        }
                         cmd = new MySqlCommand(selectquery, conn);
                         if (cmd != null)
                         {
@@ -188,7 +198,8 @@ namespace UserManagement
                                         }
                                         else
                                         {
-                                            usertype = "RegularUser";
+                                            string dbusertype = row["accesstype"].ToString();
+                                            usertype = dbusertype;
                                         }
                                         Session["usertype"] = usertype;
                                         Response.Redirect("Welcome.aspx", false);

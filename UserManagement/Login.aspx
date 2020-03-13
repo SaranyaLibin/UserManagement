@@ -23,7 +23,9 @@
         <table>
             <tr>
                 <td>
+
                     <asp:Label ID="label_login_username" runat="server" Text="Username" ForeColor="White"></asp:Label>
+                               
                 </td>
                 <td>
                     <asp:TextBox ID="txt_login_username"  runat="server" CssClass="uitextbox" TextMode="Email"></asp:TextBox>

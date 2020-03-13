@@ -211,6 +211,15 @@ namespace UserManagement {
         protected global::System.Web.UI.WebControls.TextBox txtprofileCalendar;
         
         /// <summary>
+        /// labelmyprofilereqstatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelmyprofilereqstatus;
+        
+        /// <summary>
         /// labelprofileaccesstype control.
         /// </summary>
         /// <remarks>
@@ -290,6 +299,15 @@ namespace UserManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnreqelevatedaccess;
+        
+        /// <summary>
+        /// btnEditprofile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEditprofile;
         
         /// <summary>
         /// View3 control.

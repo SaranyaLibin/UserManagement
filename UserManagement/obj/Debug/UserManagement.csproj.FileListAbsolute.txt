@@ -1,3 +1,4 @@
+D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\obj\Debug\UserManagement.csprojResolveAssemblyReference.cache
 D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\bin\roslyn\csc.exe
 D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -15,7 +16,6 @@ D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\bin\UserManage
 D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\bin\UserManagement.pdb
 D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\bin\AjaxControlToolkit.dll
 D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\bin\Antlr3.Runtime.dll
-D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\bin\AspNet.ScriptManager.bootstrap.dll
 D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\bin\AspNet.ScriptManager.jQuery.dll
 D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\bin\BotDetect.dll
 D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\bin\BotDetect.Web.Mvc.dll
@@ -72,6 +72,5 @@ D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\bin\Microsoft.
 D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\bin\Microsoft.Owin.Security.Twitter.xml
 D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\bin\Microsoft.Owin.Security.OAuth.xml
-D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\obj\Debug\UserManagement.csprojResolveAssemblyReference.cache
 D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\obj\Debug\UserManagement.dll
 D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\obj\Debug\UserManagement.pdb

@@ -13,20 +13,22 @@ namespace UserManagement
     {
         string username = null;
         string usertype = null;
-        bool buttonclicked = false;
+      
         protected void Page_Load(object sender, EventArgs e)
         {
+            username = (string)Session["username"];
+            usertype = (string)Session["usertype"];
             if (!IsPostBack)
             {
-                if (Session["username"] == null)
+                if ((username == null) || (usertype == null))
                 {
                     username = null;
+                    usertype = null;
                     Response.Redirect("Login.aspx");
                 }
                 else
                 {
-                    username = (string)Session["username"];
-                    usertype = (string)Session["usertype"];
+                    
                     labelwelcome.Text = "Welcome " + username;
                     labelwelcome.Visible = true;
                     welcome.Visible = false;
@@ -62,7 +64,8 @@ namespace UserManagement
                         myprofile.Visible = true;
                         Create.Visible = false;
                         Delete.Visible = false;
-                        btnreqelevatedaccess.Visible = true;
+                       
+
                     }
 
                     populateuserdetails(null);
@@ -89,8 +92,6 @@ namespace UserManagement
         protected void MyProfile_Click(object sender, EventArgs e)
         {
             MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=N!ved!tas0;database=usermanagement");
-            string username = (string)Session["username"];
-            string usertype = (string)Session["usertype"];
             string datetime = null;
             try
             {
@@ -106,8 +107,11 @@ namespace UserManagement
                     }
                     else
                     {
-                        selectquery = @"SELECT reg.*,user.department FROM  usermanagement.register reg INNER JOIN  usermanagement.users user ON reg.username = user.username
-                        WHERE reg.username = '" + username + "'";
+                        //selectquery = @"SELECT reg.*,user.department FROM  usermanagement.register reg INNER JOIN  usermanagement.users user ON reg.username = user.username
+                        //WHERE reg.username = '" + username + "'";
+                        selectquery = @"SELECT reg.*,user.department ,req.requeststatus 
+                        FROM  usermanagement.register reg INNER JOIN  usermanagement.users user ON  reg.username= user.username
+                        INNER JOIN  usermanagement.request req ON req.emailaddress= user.emailaddress WHERE reg.username ='" + username + "'";
                     }
                     cmd = new MySqlCommand(selectquery, conn);
                     if (cmd != null)
@@ -122,29 +126,55 @@ namespace UserManagement
                             foreach (DataRow row in dt.Rows)
                             {
                                 txtprofileemail.Text = username;
+                                txtprofileemail.Enabled = false;
                                 txtprofileAccessType.Text = usertype;
+                                txtprofileAccessType.Enabled = false;
                                 datetime = row["dateofbirth"].ToString();
                                 datetime = DateTime.Parse(datetime).ToString("yyyy-MM-dd");
                                 txtprofileCalendar.Text = datetime;
+                                txtprofileCalendar.Enabled = false;
                                 txtprofilepassword.Attributes["value"] = row["password"].ToString();
+                                txtprofilepassword.Enabled = false;
                                 txtprofilefirstname.Text = row["firstname"].ToString();
+                                txtprofilefirstname.Enabled = false;
                                 txtprofilelastname.Text = row["lastname"].ToString();
+                                txtprofilelastname.Enabled = false;
                                 txtprofilephoneno.Text = row["phonenumber"].ToString();
+                                txtprofilephoneno.Enabled = false;
                                 txtprofileaddress.Text = row["address"].ToString();
+                                txtprofileaddress.Enabled = false;
                                 if (usertype.Equals("SuperUser"))
                                 {
-
                                     txtprofileAccessType.Text = usertype;
+                                    txtprofileAccessType.Enabled = false;
                                     txtprofiledepartment.Visible = false;
                                     labelprofiledept.Visible = false;
 
                                 }
                                 else
                                 {
+                                    string reqstatus = null;
+                                    reqstatus = row["requeststatus"].ToString();
+                                    if (usertype.Equals("RegularUser"))
+                                    {
+                                        if (reqstatus.Equals("Approved"))
+                                        {
+                                            btnreqelevatedaccess.Visible = false;
+                                        }
+                                        else
+                                        {
+                                            btnreqelevatedaccess.Visible = true;
+                                        }
+                                    }
                                     txtprofiledepartment.Text = row["department"].ToString();
+                                    labelmyprofilereqstatus.Text = "Access request is " + reqstatus;
+                                    labelmyprofilereqstatus.Visible = true;
                                     txtprofileAccessType.Text = usertype;
-                                    txtprofiledepartment.Visible = true;
+                                    txtprofileAccessType.Enabled = false;
+                                    //visible except superuser
                                     labelprofiledept.Visible = true;
+                                    txtprofiledepartment.Visible = true;
+                                    txtprofiledepartment.Enabled = false;
                                 }
                                
                             }
@@ -177,17 +207,13 @@ namespace UserManagement
 
         protected void Create_Click(object sender, EventArgs e)
         {
-            string username = (string)Session["username"];
             Session["username"] = username;
-            bool strbuttonclicked = buttonclicked;
-            Session["buttonclicked"] = strbuttonclicked;
             Response.Redirect("AddUser.aspx");
 
         }
 
         protected void Edit_Click(object sender, EventArgs e)
         {
-
             foreach (GridViewRow item in UsersGridView1.Rows)
             { 
                 CheckBox chkbox = (CheckBox)item.FindControl("UsersCheckBox1");
@@ -195,7 +221,8 @@ namespace UserManagement
                 {
                     //Do stuff
                     string editusername = item.Cells[2].Text;
-                    Response.Redirect("EditUser.aspx?editusername=" + editusername);
+                    Session["editusername"] = editusername;
+                    Response.Redirect("EditUser.aspx");
                 }
                 else
                 {
@@ -250,11 +277,6 @@ namespace UserManagement
                 if (conn != null)
                 {
                     MySqlCommand cmd = new MySqlCommand();
-                    // string selectquery= @"SELECT user.emailaddress AS UserName,reg.firstname AS FirstName ,reg.lastname AS LastName,user.accesstype AS AccessType,user.department AS Department
-                    // FROM  usermanagement.register reg INNER JOIN  usermanagement.users user ON  reg.username= user.username;";
-                    //string selectquery = @"SELECT user.emailaddress AS UserName,reg.firstname AS FirstName ,reg.lastname AS LastName,user.accesstype AS AccessType,user.department AS Department
-                    //FROM  usermanagement.register reg INNER JOIN  usermanagement.users user ON  reg.username= user.username WHERE CONCAT(user.emailaddress,reg.firstname ,reg.lastname,user.accesstype,user.department ) 
-                    //like '" + valuetoSearch + "%'";
                     string query = @"SELECT user.emailaddress AS UserName,reg.firstname AS FirstName ,reg.lastname AS LastName,user.accesstype AS AccessType,user.department AS Department
                     FROM  usermanagement.register reg INNER JOIN  usermanagement.users user ON  reg.username= user.username";
                     query += " WHERE user.department LIKE '%" + lstdeptdropdown + "%'";
@@ -280,21 +302,19 @@ namespace UserManagement
                         }
                         else
                         {
-                            if (sortExpression != null)
-                            {
-                                DataView dv = dt.AsDataView();
-                                this.SortDirection = this.SortDirection == "ASC" ? "DESC" : "ASC";
-
-                                dv.Sort = sortExpression + " " + this.SortDirection;
-                                UsersGridView1.DataSource = dv;
-                                UsersGridView1.DataBind();
-                            }
-                            else
-                            {
-                                UsersGridView1.DataSource = dt;
-                                UsersGridView1.DataBind();
-                            }
-                           
+                                if (sortExpression != null)
+                                {
+                                    DataView dv = dt.AsDataView();
+                                    this.SortDirection = this.SortDirection == "ASC" ? "DESC" : "ASC";
+                                    dv.Sort = sortExpression + " " + this.SortDirection;
+                                    UsersGridView1.DataSource = dv;
+                                    UsersGridView1.DataBind();
+                                }
+                                else
+                                {
+                                    UsersGridView1.DataSource = dt;
+                                    UsersGridView1.DataBind();
+                                }
                             
                         }
                     }
@@ -392,7 +412,6 @@ namespace UserManagement
 
         protected void btnreqelevatedaccess_Click(object sender, EventArgs e)
         {
-            buttonclicked = true;
             MySqlConnection conn = new MySqlConnection("datasource=localhost;port=3306;username=root;password=N!ved!tas0;database=usermanagement");
             if (Page.IsValid)
             {
@@ -423,7 +442,7 @@ namespace UserManagement
         }
     }
 
-        protected bool populaterequestdetails(string sortExpression = null)
+         protected bool populaterequestdetails(string sortExpression = null)
         {
             string lstdeptdropdown = null;
             if (AccessDropDownList.Text.ToString().Equals("All"))
@@ -535,34 +554,44 @@ namespace UserManagement
                 {
                     //Do stuff
                     string approveusername = item.Cells[2].Text;
-                    try
+                    string requeststatus = item.Cells[6].Text;
+                    if (requeststatus.Equals("Active"))
                     {
-                        conn.Open();
-                        if (conn != null)
+                        try
                         {
-                            MySqlCommand cmd = new MySqlCommand();
-                            string selectquery = @"UPDATE usermanagement.request SET requeststatus = 'Approved' WHERE emailaddress ='" + approveusername + "'";
-                            cmd = new MySqlCommand(selectquery, conn);
-                            if (cmd != null)
+                            conn.Open();
+                            if (conn != null)
                             {
-                                cmd.ExecuteNonQuery();
+                                MySqlCommand cmd = new MySqlCommand();
+                                string updatequery = @"UPDATE usermanagement.users INNER JOIN usermanagement.request ON usermanagement.users.emailaddress = usermanagement.request.emailaddress
+                            SET usermanagement.users.accesstype = 'ElevatedAccessUser', usermanagement.request.requeststatus = 'Approved'
+                            WHERE usermanagement.users.emailaddress ='" + approveusername + "'";
+                                cmd = new MySqlCommand(updatequery, conn);
+                                if (cmd != null)
+                                {
+                                    cmd.ExecuteNonQuery();
+                                }
                             }
+                            else
+                            {
+                                //label_login_errmsg.Text = "Failed to connect to Database\n";
+                            }
+                            populaterequestdetails(null);
+                            conn.Close();
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            //label_login_errmsg.Text = "Failed to connect to Database\n";
+                            //label_login_errmsg.Text = ex.Message;
                         }
-                        populaterequestdetails(null);
-                        conn.Close();
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        //label_login_errmsg.Text = ex.Message;
+                        //label_adduser_errormsg.Text = "Please select to display the user\n";
                     }
                 }
                 else
                 {
-                    //label_adduser_errormsg.Text = "Please select to display the user\n";
+                   // label_adduser_errormsg.Text = "User didnt request";
                 }
             }
         
@@ -578,34 +607,44 @@ namespace UserManagement
                 {
                     //Do stuff
                     string declineusername = item.Cells[2].Text;
-                    try
+                    string requeststatus = item.Cells[6].Text;
+                    if (requeststatus.Equals("Active"))
                     {
-                        conn.Open();
-                        if (conn != null)
+                        //check status is active
+                        try
                         {
-                            MySqlCommand cmd = new MySqlCommand();
-                            string selectquery = @"UPDATE usermanagement.request SET requeststatus = 'Declined' WHERE emailaddress ='" + declineusername + "'";
-                            cmd = new MySqlCommand(selectquery, conn);
-                            if (cmd != null)
+                            conn.Open();
+                            if (conn != null)
                             {
-                                cmd.ExecuteNonQuery();
+                                MySqlCommand cmd = new MySqlCommand();
+                                string updatequery = @"UPDATE usermanagement.request SET requeststatus = 'Declined' WHERE emailaddress ='" + declineusername + "'";
+                                cmd = new MySqlCommand(updatequery, conn);
+                                if (cmd != null)
+                                {
+                                    cmd.ExecuteNonQuery();
+                                }
                             }
+                            else
+                            {
+                                //label_login_errmsg.Text = "Failed to connect to Database\n";
+                            }
+                            populaterequestdetails(null);
+                            conn.Close();
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            //label_login_errmsg.Text = "Failed to connect to Database\n";
+                            //label_login_errmsg.Text = ex.Message;
                         }
-                        populaterequestdetails(null);
-                        conn.Close();
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        //label_login_errmsg.Text = ex.Message;
+                        //label_adduser_errormsg.Text = "Please select to display the user\n";
                     }
                 }
                 else
                 {
-                    //label_adduser_errormsg.Text = "Please select to display the user\n";
+                    //label_adduser_errormsg.Text = "Can't Decline !!! Not requested yet\n";
+
                 }
             }
 
@@ -620,6 +659,7 @@ namespace UserManagement
                 if (chkbox.Checked)
                 {
                     //Do stuff
+                    //check status is active....
                     string deleteusername = item.Cells[2].Text;
                     try
                     {
@@ -641,6 +681,7 @@ namespace UserManagement
                         {
                             //label_login_errmsg.Text = "Failed to connect to Database\n";
                         }
+                        populateuserdetails(null);
                         conn.Close();
                     }
                     catch (Exception ex)
@@ -654,6 +695,42 @@ namespace UserManagement
                 }
             }
 
+        }
+
+        protected void btnEditprofile_Click(object sender, EventArgs e)
+        {
+            string editusername = txtprofileemail.Text.ToString();
+            Session["editusername"] = editusername;
+            Response.Redirect("EditProfile.aspx");
+        }
+
+        protected void UsersGridView1_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                foreach (TableCell tc in e.Row.Cells)
+                {
+                    if (tc.HasControls())
+                    {
+                        LinkButton lb = (LinkButton)tc.Controls[0];
+                        if (lb != null)
+                        {
+                            Image icon = new Image();
+                            if(UsersGridView1.SortDirection.ToString().Equals(SortDirection))
+                            {
+                                icon.ImageUrl = "~/Images/down_arrow.png";
+                            }
+                            else
+                            {
+                                icon.ImageUrl = "~/Images/up_arrow.png";
+                            }
+                            tc.Controls.Add(new LiteralControl(" "));
+                            tc.Controls.Add(icon);
+
+                        }
+                    }
+                }
+            }
         }
     }
 }

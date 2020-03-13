@@ -6,6 +6,9 @@
 <head runat="server">
     <title></title>
         <link rel = "stylesheet" type = "text/css" href = "usermanagement.css" />
+    <style type="text/css">
+      
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">

@@ -6,6 +6,11 @@
 <head runat="server">
     <title></title>
       <link rel = "stylesheet" type = "text/css" href = "usermanagement.css" />
+    <style type="text/css">
+        .auto-style1 {
+            height: 23px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -44,10 +49,10 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="auto-style1">
                     <asp:Label ID="labelviewcalendar" runat="server" Text="BusinessCalendar:" ForeColor="White"></asp:Label>
                 </td>
-                <td>
+                <td class="auto-style1">
                     <asp:Label ID="viewcalendarvalue" runat="server" ForeColor="White"></asp:Label>
                 </td>
                 </tr>

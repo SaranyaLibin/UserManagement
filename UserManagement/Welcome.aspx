@@ -7,9 +7,6 @@
     <title></title>
       <link rel = "stylesheet" type = "text/css" href = "usermanagement.css" />
     <style type="text/css">
-        .auto-style1 {
-            width: 104px;
-        }
         </style>
 </head>
 <body>
@@ -21,7 +18,7 @@
             <asp:LinkButton ID="welcomeLogOut" runat="server" OnClick="welcomeLogOut_Click" CssClass="uilogout">LogOut</asp:LinkButton>
         </div>
         <div>
-    <table style="width: 50%; border-width: 1px; text-align:match-parent;border-color: #666; border-style: solid">
+    <table style="width: 70%; border-width: 1px; text-align:match-parent;border-color: #666; border-style: solid">
         <tr>
         <td>
           <asp:Button Text="Welcome" BorderStyle="None" ID="welcome" CssClass="uibutton" runat="server"
@@ -38,7 +35,7 @@
               OnClick="AccessRequest_Click" />
           <asp:MultiView ID="MainView" runat="server">
             <asp:View ID="View1" runat="server">
-                <table style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
+                <table style="width: 70%; border-width: 1px; border-color: #666; border-style: solid">
                     <tr>
                         <td>
                             <asp:Label ID="labelwelcome" runat="server" Text="Label" ForeColor="#FFFFCC"></asp:Label>
@@ -47,7 +44,7 @@
                 </table>
             </asp:View>
               <asp:View ID="View2" runat="server">
-                  <table style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
+                  <table style="width: 70%; border-width: 1px; border-color: #666; border-style: solid">
                       <tr>
                           <td>
                               <asp:Label ID="labelprofilemailaddress" runat="server" Text="Email Address" ForeColor="White"></asp:Label>
@@ -92,6 +89,9 @@
                           <td>
                               <asp:TextBox ID="txtprofileCalendar" runat="server" TextMode="Date"></asp:TextBox>
                           </td>
+                          <td>
+                              <asp:Label ID="labelmyprofilereqstatus" runat="server" Text="RequestStatus" Visible="False" ForeColor="White"></asp:Label>
+                          </td>
                       </tr>
                       <tr>
                           <td>
@@ -134,12 +134,16 @@
                               <asp:Button ID="btnreqelevatedaccess" runat="server" Text="Request Elevated Access " CssClass="uibutton" OnClick="btnreqelevatedaccess_Click" />
 
                           </td>
+                          <td>
+                              <asp:Button ID="btnEditprofile" runat="server" Text="Edit" CssClass="uibutton" OnClick="btnEditprofile_Click" />
+
+                          </td>
                       </tr>
                   </table>
 
               </asp:View>
             <asp:View ID="View3" runat="server">
-              <table style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
+              <table style="width: 70%; border-width: 1px; border-color: #666; border-style: solid">
       
                 <tr>
                         <td>
@@ -176,11 +180,12 @@
                               </td>
                           </tr>
                        </table>
-                        <asp:GridView ID="UsersGridView1" runat="server" AutoGenerateColumns="False" AllowSorting="True" OnSorting="OnSorting" EmptyDataText="No records available" EmptyDataRowStyle-ForeColor="White">
+                 <div style ="height:200px; width:617px;overflow:auto">
+                        <asp:GridView ID="UsersGridView1" runat="server" AutoGenerateColumns="False" AllowSorting="True" OnSorting="OnSorting" EmptyDataText="No records available" EmptyDataRowStyle-ForeColor="White" OnRowCreated="UsersGridView1_RowCreated" >
                             <Columns>
                                 <asp:TemplateField>
                                     <ItemTemplate>
-                                        <asp:CheckBox ID="UsersCheckBox1" runat="server" AutoPostBack="True" />
+                                        <asp:CheckBox ID="UsersCheckBox1" runat="server" AutoPostBack="False" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Userid" HeaderStyle-ForeColor="White">
@@ -204,11 +209,13 @@
                                     <HeaderStyle ForeColor="White" />
                                 </asp:BoundField>
                             </Columns>
+                            <HeaderStyle BackColor="#4CAF50" ForeColor="White" HorizontalAlign="Left"></HeaderStyle>
                             <RowStyle ForeColor="White" />
                         </asp:GridView>
+                     </div>
             </asp:View>
             <asp:View ID="View4" runat="server">
-              <table style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
+              <table style="width: 70%; border-width: 1px; border-color: #666; border-style: solid">
                            <tr>
                               <td>
                                   <asp:Label ID="AccessLabel" runat="server" ForeColor="White" Text="Department"></asp:Label>
@@ -230,6 +237,8 @@
                                 </td>
                           </tr>
                           </table>  
+                <div style ="height:200px; width:617px;overflow:auto">
+
                       <asp:GridView ID="AccessGridView1" runat="server" AutoGenerateColumns="False" AllowSorting="True" OnSorting="AccessGridView1_Sorting"  EmptyDataText="No records available" EmptyDataRowStyle-ForeColor="White">
                           <Columns>
                               <asp:TemplateField>
@@ -262,7 +271,10 @@
                           <EmptyDataRowStyle ForeColor="White" />
                           <RowStyle ForeColor="White" />
                       </asp:GridView>
-                     
+                    
+                                     </div>
+               
+
             </asp:View>
           </asp:MultiView>
     </div>

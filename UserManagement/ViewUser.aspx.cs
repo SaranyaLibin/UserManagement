@@ -26,7 +26,8 @@ namespace UserManagement
                 if (conn != null)
                 {
                     MySqlCommand cmd = new MySqlCommand();
-                    string selectquery = @"SELECT user.*,reg.firstname ,reg.lastname FROM  usermanagement.register reg INNER JOIN  usermanagement.users user ON  reg.username= user.username AND user.emailaddress='" + viewusername + "'";
+                    string selectquery = @"SELECT user.*,reg.firstname ,
+                    reg.lastname FROM  usermanagement.register reg INNER JOIN  usermanagement.users user ON  reg.username= user.username AND user.emailaddress='" + viewusername + "'";
                     cmd = new MySqlCommand(selectquery, conn);
                     if (cmd != null)
                     {
