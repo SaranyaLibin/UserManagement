@@ -5,93 +5,80 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-        <link rel = "stylesheet" type = "text/css" href = "usermanagement.css" />
-    <style type="text/css">
-      
-    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="Content/bootstrap.min.css" />
+    <script src="Scripts/jquery.min.js"></script>
+    <script src="Content/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="usermanagement.css" />
 </head>
 <body>
-    <form id="form1" runat="server">
-        <asp:ScriptManager ID="scrptEditUser" runat="server"></asp:ScriptManager>
-    <asp:UpdatePanel ID="EditUserUpdatePanel" runat="server">
-    <ContentTemplate>
-    <div>
-        <table>
-               <tr>
-                <td>
-                    <asp:Label ID="labeleditusername" runat="server" Text="Username" ForeColor="White"></asp:Label>
-                </td>
-                <td>
-                    <asp:TextBox ID="txteditusername" runat="server" CssClass="uitextbox"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:Label ID="labeledituseremail" runat="server" Text="Email Address" ForeColor="White"></asp:Label>
-                </td>
-                <td>
-                    <asp:TextBox ID="txtedituseremail" runat="server" CssClass="uitextbox"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:Label ID="labeledituserpswd" runat="server" Text="Password" ForeColor="White"></asp:Label>
-                </td>
-                <td>
-                     <asp:TextBox ID="txtedituserpswd" runat="server" CssClass="uitextbox" TextMode="Password"></asp:TextBox></td>
-            </tr>
-              <tr>
-                <td>
-                    <asp:Label ID="labeleditusercnfrmpswd" runat="server" Text="Confirm Password" ForeColor="White"></asp:Label>
-                </td>
-                <td>
-                     <asp:TextBox ID="txteditusercnfrmpswd" runat="server" CssClass="uitextbox" TextMode="Password"></asp:TextBox></td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:Label ID="labeledituserdob" runat="server" Text="Business Calendar" ForeColor="White"></asp:Label>
-                </td>
-                <td>
-                    <asp:TextBox ID="txt_edituser_calendar_selecteddate" runat="server" CssClass="uitextbox" TextMode="Date"></asp:TextBox>
-                 </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:Label ID="labeleditaccesstype" runat="server" Text="Access Type" ForeColor="White"></asp:Label>
-                </td>
-                <td>
-                     <asp:TextBox ID="txtedituseraccesstype" runat="server" CssClass="uitextbox" ></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:Label ID="labeledituserdept" runat="server" Text="Department" ForeColor="White"></asp:Label>
-                </td>
-              
-                 <td>
-                    <asp:DropDownList ID="edituserDropDowndepartment" runat="server" CssClass="uitextbox">
-                        <asp:ListItem></asp:ListItem>
-                        <asp:ListItem>Electrical</asp:ListItem>
-                        <asp:ListItem>Technology</asp:ListItem>
-                        <asp:ListItem>Mechanical</asp:ListItem>
-                        <asp:ListItem>Civil</asp:ListItem>
-                    </asp:DropDownList>
-                </td>
-
-            </tr>
-             <tr>
-                <td>
-                    <asp:Button ID="btnedituserSave" runat="server" Text="Save" OnClick="btnedituserSave_Click" CssClass="uibutton" />
-                   
-                </td>
-                 <td>
-                      <asp:Button ID="btnedituserCancel" runat="server" Text="Cancel" CssClass="uibutton" OnClick="btnedituserCancel_Click"/>
-                 </td>
-            </tr>
-        </table>
+    <div class="container">
+        <form id="form1" runat="server">
+            <asp:ScriptManager ID="scrptEditUser" runat="server"></asp:ScriptManager>
+            <asp:UpdatePanel ID="EditUserUpdatePanel" runat="server">
+                <ContentTemplate>
+                    <div class="form-group">
+                        <asp:Label ID="labeleditusername" CssClass="col-form-label col-xs-3 mr-3" runat="server" Text="Username" ForeColor="White"></asp:Label>
+                        <div class="col-xs-9">
+                            <asp:TextBox ID="txteditusername" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <asp:Label ID="labeledituseremail" runat="server" CssClass="col-form-label col-xs-3 mr-3" Text="Email Address" ForeColor="White"></asp:Label>
+                        <div class="col-xs-9">
+                            <asp:TextBox ID="txtedituseremail" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <asp:Label ID="labeledituserpswd" runat="server" CssClass="col-form-label col-xs-3 mr-3" Text="Password" ForeColor="White"></asp:Label>
+                        <div class="col-xs-9">
+                            <asp:TextBox ID="txtedituserpswd" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox></td>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <asp:Label ID="labeleditusercnfrmpswd" runat="server" CssClass="col-form-label col-xs-3 mr-3" Text="Confirm Password" ForeColor="White"></asp:Label>
+                        <div class="col-xs-9">
+                            <asp:TextBox ID="txteditusercnfrmpswd" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox></td>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <asp:Label ID="labeledituserdob" runat="server" CssClass="col-form-label col-xs-3 mr-3" Text="Business Calendar" ForeColor="White"></asp:Label>
+                        <div class="col-xs-9">
+                            <asp:TextBox ID="txt_edituser_calendar_selecteddate" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <asp:Label ID="labeleditaccesstype" CssClass="col-form-label col-xs-3 mr-3" runat="server" Text="Access Type" ForeColor="White"></asp:Label>
+                        <div class="col-xs-9">
+                            <asp:TextBox ID="txtedituseraccesstype" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <asp:Label ID="labeledituserdept" CssClass="col-form-label col-xs-3 mr-3" runat="server" Text="Department" ForeColor="White"></asp:Label>
+                        <div class="col-xs-9">
+                            <asp:DropDownList ID="edituserDropDowndepartment" runat="server" CssClass="form-control">
+                                <asp:ListItem></asp:ListItem>
+                                <asp:ListItem>Electrical</asp:ListItem>
+                                <asp:ListItem>Technology</asp:ListItem>
+                                <asp:ListItem>Mechanical</asp:ListItem>
+                                <asp:ListItem>Civil</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-6 mr-3">
+                                <asp:Button ID="btnedituserSave" CssClass="col-form-label col-xs-3 mr-3" runat="server" Text="Save" OnClick="btnedituserSave_Click" />
+                            </div>
+                            <div class="col-xs-6 mr-3">
+                                <asp:Button ID="btnedituserCancel" runat="server" Text="Cancel" CssClass="form-control" OnClick="btnedituserCancel_Click" />
+                            </div>
+                        </div>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </form>
     </div>
-          </ContentTemplate> 
-       </asp:UpdatePanel>
-    </form>
 </body>
 </html>

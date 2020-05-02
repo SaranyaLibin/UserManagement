@@ -1,4 +1,3 @@
-D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\obj\Debug\UserManagement.csprojResolveAssemblyReference.cache
 D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\bin\roslyn\csc.exe
 D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -74,3 +73,4 @@ D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\bin\Microsoft.
 D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\bin\Microsoft.Owin.Security.OAuth.xml
 D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\obj\Debug\UserManagement.dll
 D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\obj\Debug\UserManagement.pdb
+D:\Semester 4\EngineeringManagement\UserManagement\UserManagement\obj\Debug\UserManagement.csprojResolveAssemblyReference.cache

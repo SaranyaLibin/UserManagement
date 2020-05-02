@@ -22,33 +22,6 @@ namespace UserManagement {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// ScriptManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
-        /// <summary>
-        /// UpdatePanel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
-        /// <summary>
-        /// welcomeLogOut control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton welcomeLogOut;
-        
-        /// <summary>
         /// welcome control.
         /// </summary>
         /// <remarks>
@@ -211,15 +184,6 @@ namespace UserManagement {
         protected global::System.Web.UI.WebControls.TextBox txtprofileCalendar;
         
         /// <summary>
-        /// labelmyprofilereqstatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labelmyprofilereqstatus;
-        
-        /// <summary>
         /// labelprofileaccesstype control.
         /// </summary>
         /// <remarks>
@@ -308,6 +272,15 @@ namespace UserManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnEditprofile;
+        
+        /// <summary>
+        /// labelmyprofilereqstatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelmyprofilereqstatus;
         
         /// <summary>
         /// View3 control.

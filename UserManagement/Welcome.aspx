@@ -5,183 +5,164 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-      <link rel = "stylesheet" type = "text/css" href = "usermanagement.css" />
-    <style type="text/css">
-        </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="Content/bootstrap.min.css" />
+    <script src="Scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="Scripts/popper.min.js" type="text/javascript"></script>
+    <script src="Scripts/bootstrap.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="usermanagement.css" />
 </head>
 <body>
-    <form id="form1" runat="server">
-        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
-        <div style="text-align:right">
-            <asp:LinkButton ID="welcomeLogOut" runat="server" OnClick="welcomeLogOut_Click" CssClass="uilogout">LogOut</asp:LinkButton>
-        </div>
-        <div>
-    <table style="width: 70%; border-width: 1px; text-align:match-parent;border-color: #666; border-style: solid">
-        <tr>
-        <td>
-          <asp:Button Text="Welcome" BorderStyle="None" ID="welcome" CssClass="uibutton" runat="server"
+    <div class="container">
+        
+        <form id="form1" runat="server">
+            <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+               
+                <!-- Toggler/collapsibe Button -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="nav nav-tabs nav-justified">
+              <%--      <ul class="navbar-nav">--%>
+                        <li class="nav-item">
 
-              OnClick="welcome_Click" />
-          <asp:Button Text="My Profile" BorderStyle="None" ID="myprofile" CssClass="uibutton" runat="server"
+                          <asp:Button Text="Welcome" BorderStyle="None" ID="welcome" runat="server" CssClass="nav-link active btn btn-primary"
+                                OnClick="welcome_Click" />
+                        </li>
+                        <li class="nav-item">
+                            <asp:Button Text="My Profile" BorderStyle="None" ID="myprofile" runat="server" CssClass="nav-link active btn btn-primary"
+                                OnClick="MyProfile_Click" />
+                        </li>
+                        <li class="nav-item">
+                            <asp:Button Text="Users" BorderStyle="None" ID="users" runat="server" CssClass="nav-link active btn btn-primary"
+                                OnClick="Users_Click" />
+                        </li>
+                        <li class="nav-item">
+                            <asp:Button Text="Access Request" BorderStyle="None" ID="accessrequest" runat="server" CssClass="nav-link active btn btn-primary"
+                                OnClick="AccessRequest_Click" />
+                        </li>
 
-              OnClick="MyProfile_Click" />
-          <asp:Button Text="Users" BorderStyle="None" ID="users" CssClass="uibutton" runat="server"
+                    </ul>
+                </div>
+            </nav>
+            <%--<div class="tab-content">--%>
+            <asp:MultiView ID="MainView" runat="server">
+                <asp:View ID="View1" runat="server">
+                    <div class="form-group">
+                        <asp:Label ID="labelwelcome" runat="server" Text="Label" ForeColor="#FFFFCC"></asp:Label>
+                    </div>
+                </asp:View>
+                <asp:View ID="View2" runat="server">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <asp:Label ID="labelprofilemailaddress" runat="server" Text="Email Address" ForeColor="White" CssClass="col-form-label col-xs-3 mr-3"></asp:Label>
+                                <div class="col-xs-9">
+                                    <asp:TextBox ID="txtprofileemail" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <asp:Label ID="labelprofilepswd" runat="server" Text="Password" ForeColor="White" CssClass="col-form-label col-xs-3 mr-3"></asp:Label>
+                                <div class="col-xs-9">
+                                    <asp:TextBox ID="txtprofilepassword" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <asp:Label ID="labelprofilefirstname" CssClass="col-form-label col-xs-3 mr-3" runat="server" Text="First Name" ForeColor="White"></asp:Label>
+                                <div class="col-xs-9">
+                                    <asp:TextBox ID="txtprofilefirstname" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <asp:Label ID="labelprofilelastname" CssClass="col-form-label col-xs-3 mr-3" runat="server" Text="Last Name" ForeColor="White"></asp:Label>
+                                <div class="col-xs-9">
+                                    <asp:TextBox ID="txtprofilelastname" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <asp:Label ID="labelprofiledateofbirth" CssClass="col-form-label col-xs-3 mr-3" runat="server" Text="DateofBirth" ForeColor="White"></asp:Label>
+                                <div class="col-xs-9">
+                                    <asp:TextBox ID="txtprofileCalendar" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
+                                </div>
+                            </div>
 
-              OnClick="Users_Click" />
-             <asp:Button Text="Access Request" BorderStyle="None" ID="accessrequest" CssClass="uibutton" runat="server"
+                            <div class="form-group">
+                                <asp:Label ID="labelprofileaccesstype" CssClass="col-form-label col-xs-3 mr-3" runat="server" Text="Access Type" ForeColor="White"></asp:Label>
+                                <div class="col-xs-9">
+                                    <asp:TextBox ID="txtprofileAccessType" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
 
-              OnClick="AccessRequest_Click" />
-          <asp:MultiView ID="MainView" runat="server">
-            <asp:View ID="View1" runat="server">
-                <table style="width: 70%; border-width: 1px; border-color: #666; border-style: solid">
-                    <tr>
-                        <td>
-                            <asp:Label ID="labelwelcome" runat="server" Text="Label" ForeColor="#FFFFCC"></asp:Label>
-                        </td>
-                    </tr>
-                </table>
-            </asp:View>
-              <asp:View ID="View2" runat="server">
-                  <table style="width: 70%; border-width: 1px; border-color: #666; border-style: solid">
-                      <tr>
-                          <td>
-                              <asp:Label ID="labelprofilemailaddress" runat="server" Text="Email Address" ForeColor="White"></asp:Label>
-                          </td>
+                            <div class="form-group">
+                                <asp:Label ID="labelprofilephoneno" CssClass="col-form-label col-xs-3 mr-3" runat="server" Text="PhoneNumber" ForeColor="White"></asp:Label>
+                                <div class="col-xs-9">
+                                    <asp:TextBox ID="txtprofilephoneno" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <asp:Label ID="labelprofiledept" CssClass="col-form-label col-xs-3 mr-3" runat="server" Text="Department" ForeColor="White"></asp:Label>
+                                <div class="col-xs-9">
+                                    <asp:TextBox ID="txtprofiledepartment" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <asp:Label ID="labelprofileaddress" CssClass="col-form-label col-xs-3 mr-3" runat="server" Text="Address" ForeColor="White"></asp:Label>
+                                <div class="col-xs-9">
+                                    <asp:TextBox ID="txtprofileaddress" CssClass="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
 
-                          <td>
-                              <asp:TextBox ID="txtprofileemail" runat="server"></asp:TextBox>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>
-                              <asp:Label ID="labelprofilepswd" runat="server" Text="Password" ForeColor="White"></asp:Label>
-                          </td>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-xs-6 mr-3">
+                                        <asp:Button ID="btnreqelevatedaccess" runat="server" Text="Request Elevated Access " CssClass="btn btn-primary" OnClick="btnreqelevatedaccess_Click" />
+                                    </div>
+                                    <div class="col-xs-6 mr-3">
+                                        <asp:Button ID="btnEditprofile" runat="server" Text="Edit" CssClass="btn btn-primary" OnClick="btnEditprofile_Click" />
 
-                          <td>
-                              <asp:TextBox ID="txtprofilepassword" runat="server" TextMode="Password"></asp:TextBox>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>
-                              <asp:Label ID="labelprofilefirstname" runat="server" Text="First Name" ForeColor="White"></asp:Label>
-                          </td>
+                                    </div>
+                                </div>
 
-                          <td>
-                              <asp:TextBox ID="txtprofilefirstname" runat="server"></asp:TextBox>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>
-                              <asp:Label ID="labelprofilelastname" runat="server" Text="Last Name" ForeColor="White"></asp:Label>
-                          </td>
-
-                          <td>
-                              <asp:TextBox ID="txtprofilelastname" runat="server"></asp:TextBox>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>
-                              <asp:Label ID="labelprofiledateofbirth" runat="server" Text="DateofBirth" ForeColor="White"></asp:Label>
-                          </td>
-
-                          <td>
-                              <asp:TextBox ID="txtprofileCalendar" runat="server" TextMode="Date"></asp:TextBox>
-                          </td>
-                          <td>
-                              <asp:Label ID="labelmyprofilereqstatus" runat="server" Text="RequestStatus" Visible="False" ForeColor="White"></asp:Label>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>
-                              <asp:Label ID="labelprofileaccesstype" runat="server" Text="Access Type" ForeColor="White"></asp:Label>
-                          </td>
-
-                          <td>
-                              <asp:TextBox ID="txtprofileAccessType" runat="server"></asp:TextBox>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>
-                              <asp:Label ID="labelprofilephoneno" runat="server" Text="PhoneNumber" ForeColor="White"></asp:Label>
-                          </td>
-
-                          <td>
-                              <asp:TextBox ID="txtprofilephoneno" runat="server"></asp:TextBox>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>
-                              <asp:Label ID="labelprofiledept" runat="server" Text="Department" ForeColor="White"></asp:Label>
-                          </td>
-
-                          <td>
-                              <asp:TextBox ID="txtprofiledepartment" runat="server"></asp:TextBox>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>
-                              <asp:Label ID="labelprofileaddress" runat="server" Text="Address" ForeColor="White"></asp:Label>
-                          </td>
-
-                          <td>
-                              <asp:TextBox ID="txtprofileaddress" runat="server"></asp:TextBox>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>
-                              <asp:Button ID="btnreqelevatedaccess" runat="server" Text="Request Elevated Access " CssClass="uibutton" OnClick="btnreqelevatedaccess_Click" />
-
-                          </td>
-                          <td>
-                              <asp:Button ID="btnEditprofile" runat="server" Text="Edit" CssClass="uibutton" OnClick="btnEditprofile_Click" />
-
-                          </td>
-                      </tr>
-                  </table>
-
-              </asp:View>
-            <asp:View ID="View3" runat="server">
-              <table style="width: 70%; border-width: 1px; border-color: #666; border-style: solid">
-      
-                <tr>
-                        <td>
-                        <asp:Button ID="Create" runat="server" Text="Create" Cssclass="uibutton" OnClick="Create_Click"/>
-                        </td>
-                        <td>
-                        <asp:Button ID="View" runat="server" Text="View" Cssclass="uibutton" OnClick="View_Click"/>
-                        </td>
-                        <td>
-                            <asp:Button ID="Edit" runat="server" Text="Edit" Cssclass="uibutton" OnClick="Edit_Click"/>
-                        </td>
-                        <td>
-                            <asp:Button ID="Delete" runat="server" Text="Delete" Cssclass="uibutton" OnClick="Delete_Click"/>
-                        </td>
-                     </tr>
-                    </table>
-                    <table style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
-    
-                          <tr>
-                              <td class="auto-style1">
-                                  <asp:Label ID="Dept" runat="server" ForeColor="White" Text="Department"></asp:Label>
-                              </td>
-                              <td>
-                                  <asp:DropDownList ID="DropDownListUserDept" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownListUserDept_SelectedIndexChanged">
-                                      <asp:ListItem>All</asp:ListItem>
-                                  </asp:DropDownList>
-                              </td>
-                              <td>
-                                  <asp:TextBox ID="txtSearch" runat="server" CssClass="uisearch"></asp:TextBox>
-                                  </td>
-                              <td>
-                                   <asp:Button ID="btnSearch" runat="server" CssClass="uibutton" Text="Search" OnClick="btnSearch_Click" />
-
-                              </td>
-                          </tr>
-                       </table>
-                 <div style ="height:200px; width:617px;overflow:auto">
-                        <asp:GridView ID="UsersGridView1" runat="server" AutoGenerateColumns="False" AllowSorting="True" OnSorting="OnSorting" EmptyDataText="No records available" EmptyDataRowStyle-ForeColor="White" OnRowCreated="UsersGridView1_RowCreated" >
+                            </div>
+                        </div>
+                        <div class="col">
+                            <asp:Label ID="labelmyprofilereqstatus" runat="server" CssClass="col-form-label col-xs-3 mr-3 float-right text-center text-info font-italic" Text="RequestStatus" Visible="False" ForeColor="White"></asp:Label>
+                        </div>
+                    </div>
+                </asp:View>
+                <asp:View ID="View3" runat="server">
+                    <div class="btn-group mr-3">
+                        <asp:Button ID="Create" runat="server" Text="Create" CssClass="btn btn-primary " OnClick="Create_Click" />
+                        <asp:Button ID="View" runat="server" Text="View" CssClass="btn btn-primary " OnClick="View_Click" />
+                        <asp:Button ID="Edit" runat="server" Text="Edit" CssClass="btn btn-primary " OnClick="Edit_Click" />
+                        <asp:Button ID="Delete" runat="server" Text="Delete" CssClass="btn btn-primary " OnClick="Delete_Click" />
+                    </div>
+                    <div class="form-group mt-3">
+                        <div class="row">
+                            <div class="mr-3 col-xs-6">
+                                <asp:Label ID="Dept" CssClass="col-form-label col-xs-3" runat="server" ForeColor="White" Text="Department"></asp:Label>
+                            </div>
+                            <div class="mr-3 col-xs-6">
+                                <div class="dropdown">
+                                    <asp:DropDownList ID="DropDownListUserDept" runat="server" CssClass="form-control dropdown-toggle" AutoPostBack="True" OnSelectedIndexChanged="DropDownListUserDept_SelectedIndexChanged">
+                                        <asp:ListItem>All</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="mr-3 col-xs-6">
+                                <div class="input-group">
+                                    <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <div class="input-group-append">
+                                        <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-success" Text="Search" OnClick="btnSearch_Click" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <asp:GridView ID="UsersGridView1" runat="server" AutoGenerateColumns="False" AllowSorting="True" OnSorting="OnSorting" EmptyDataText="No records available" EmptyDataRowStyle-ForeColor="White" OnRowCreated="UsersGridView1_RowCreated" CssClass="table table-striped">
                             <Columns>
                                 <asp:TemplateField>
                                     <ItemTemplate>
@@ -190,8 +171,8 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Userid" HeaderStyle-ForeColor="White">
                                     <ItemTemplate>
-                                    <%# Container.DataItemIndex + 1 %>
-                                </ItemTemplate>
+                                        <%# Container.DataItemIndex + 1 %>
+                                    </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:BoundField HeaderText="UserName" DataField="UserName" SortExpression="UserName">
                                     <HeaderStyle ForeColor="White" />
@@ -212,74 +193,75 @@
                             <HeaderStyle BackColor="#4CAF50" ForeColor="White" HorizontalAlign="Left"></HeaderStyle>
                             <RowStyle ForeColor="White" />
                         </asp:GridView>
-                     </div>
-            </asp:View>
-            <asp:View ID="View4" runat="server">
-              <table style="width: 70%; border-width: 1px; border-color: #666; border-style: solid">
-                           <tr>
-                              <td>
-                                  <asp:Label ID="AccessLabel" runat="server" ForeColor="White" Text="Department"></asp:Label>
-                              </td>
-                              <td>
-                                  <asp:DropDownList ID="AccessDropDownList" runat="server" OnSelectedIndexChanged="AccessDropDownList_SelectedIndexChanged" AutoPostBack="True">
-                                      <asp:ListItem>All</asp:ListItem>
-                                  </asp:DropDownList>
-                              </td>
-                              <td>
-                                  <asp:TextBox ID="txtaccessSearch" runat="server"  CssClass="btnSearch"></asp:TextBox>
-                                  <asp:Button ID="btnaccessSearch" runat="server" CssClass="uibutton" Text="Search" OnClick="btnaccessSearch_Click1" />
-                              </td>
-                              <td>
-                                <asp:Button ID="Approve" runat="server" Text="Approve" Cssclass="uibutton" OnClick="Approve_Click" />
-                                  </td>
-                               <td>
-                                <asp:Button ID="Decline" runat="server" Text="Decline" Cssclass="uibutton" OnClick="Decline_Click"/>
-                                </td>
-                          </tr>
-                          </table>  
-                <div style ="height:200px; width:617px;overflow:auto">
-
-                      <asp:GridView ID="AccessGridView1" runat="server" AutoGenerateColumns="False" AllowSorting="True" OnSorting="AccessGridView1_Sorting"  EmptyDataText="No records available" EmptyDataRowStyle-ForeColor="White">
-                          <Columns>
-                              <asp:TemplateField>
-                                  <ItemTemplate>
-                                      <asp:CheckBox ID="AccessCheckBox1" runat="server" />
-                                  </ItemTemplate>
-                              </asp:TemplateField>
-                              <asp:TemplateField HeaderText="Requestid" HeaderStyle-ForeColor="White">
+                    </div>
+                </asp:View>
+                <asp:View ID="View4" runat="server">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="mr-3 col-xs-6">
+                                <asp:Label ID="AccessLabel" runat="server" ForeColor="White" Text="Department"></asp:Label>
+                            </div>
+                            <div class="col-xs-3 mr-3">
+                                <div class="dropdown">
+                                    <asp:DropDownList ID="AccessDropDownList" CssClass="form-control dropdown-toggle" runat="server" OnSelectedIndexChanged="AccessDropDownList_SelectedIndexChanged" AutoPostBack="True">
+                                        <asp:ListItem>All</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="mr-3 col-xs-3">
+                                <div class="input-group mb-3">
+                                    <asp:TextBox ID="txtaccessSearch" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <div class="input-group-append">
+                                        <asp:Button ID="btnaccessSearch" runat="server" CssClass="btn btn-success" Text="Search" OnClick="btnaccessSearch_Click1" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mr-3 col-xs-3">
+                                <asp:Button ID="Approve" runat="server" CssClass="btn btn-success" Text="Approve" OnClick="Approve_Click" />
+                            </div>
+                            <div class="mr-3 col-xs-3">
+                                <asp:Button ID="Decline" runat="server" Text="Decline" CssClass="btn btn-danger" OnClick="Decline_Click" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <asp:GridView ID="AccessGridView1" runat="server" AutoGenerateColumns="False" OnRowCreated="AccessRequestGridView1_RowCreated" AllowSorting="True" OnSorting="AccessGridView1_Sorting" EmptyDataText="No records available" EmptyDataRowStyle-ForeColor="White" CssClass="table table-striped">
+                            <Columns>
+                                <asp:TemplateField>
                                     <ItemTemplate>
-                                    <%# Container.DataItemIndex + 1 %>
-                                </ItemTemplate>
+                                        <asp:CheckBox ID="AccessCheckBox1" runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Requestid" HeaderStyle-ForeColor="White">
+                                    <ItemTemplate>
+                                        <%# Container.DataItemIndex + 1 %>
+                                    </ItemTemplate>
                                     <HeaderStyle ForeColor="White" />
                                 </asp:TemplateField>
-                               <asp:BoundField HeaderText="UserName" DataField="UserName" SortExpression="UserName">
+                                <asp:BoundField HeaderText="UserName" DataField="UserName" SortExpression="UserName">
                                     <HeaderStyle ForeColor="White" />
                                 </asp:BoundField>
-                              <asp:BoundField HeaderText="FirstName" DataField="FirstName" SortExpression="FirstName">
-                              <HeaderStyle ForeColor="White" />
-                              </asp:BoundField>
-                              <asp:BoundField HeaderText="LastName" DataField="LastName" SortExpression="LastName">
-                              <HeaderStyle ForeColor="White" />
-                              </asp:BoundField>
-                              <asp:BoundField HeaderText="Department" DataField="Department" SortExpression="Department">
-                              <HeaderStyle ForeColor="White" />
-                              </asp:BoundField>
-                              <asp:BoundField HeaderText="RequestStatus" DataField="RequestStatus" SortExpression="RequestStatus">
-                              <HeaderStyle ForeColor="White" />
-                              </asp:BoundField>
-                          </Columns>
-                          <EmptyDataRowStyle ForeColor="White" />
-                          <RowStyle ForeColor="White" />
-                      </asp:GridView>
-                    
-                                     </div>
-               
-
-            </asp:View>
-          </asp:MultiView>
+                                <asp:BoundField HeaderText="FirstName" DataField="FirstName" SortExpression="FirstName">
+                                    <HeaderStyle ForeColor="White" />
+                                </asp:BoundField>
+                                <asp:BoundField HeaderText="LastName" DataField="LastName" SortExpression="LastName">
+                                    <HeaderStyle ForeColor="White" />
+                                </asp:BoundField>
+                                <asp:BoundField HeaderText="Department" DataField="Department" SortExpression="Department">
+                                    <HeaderStyle ForeColor="White" />
+                                </asp:BoundField>
+                                <asp:BoundField HeaderText="RequestStatus" DataField="RequestStatus" SortExpression="RequestStatus">
+                                    <HeaderStyle ForeColor="White" />
+                                </asp:BoundField>
+                            </Columns>
+                            <EmptyDataRowStyle ForeColor="White" />
+                            <RowStyle ForeColor="White" />
+                        </asp:GridView>
+                    </div>
+                </asp:View>
+            </asp:MultiView>
+            <%-- </div>--%>
+        </form>
     </div>
-    </ContentTemplate>
-    </asp:UpdatePanel>
-    </form>
 </body>
 </html>

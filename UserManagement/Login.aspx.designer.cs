@@ -13,42 +13,6 @@ namespace UserManagement {
     public partial class Login {
         
         /// <summary>
-        /// form1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
-        /// scrptLogin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager scrptLogin;
-        
-        /// <summary>
-        /// LoginUpdatePanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel LoginUpdatePanel;
-        
-        /// <summary>
-        /// imglogin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imglogin;
-        
-        /// <summary>
         /// label_login_username control.
         /// </summary>
         /// <remarks>
@@ -67,15 +31,6 @@ namespace UserManagement {
         protected global::System.Web.UI.WebControls.TextBox txt_login_username;
         
         /// <summary>
-        /// usernameRequiredFieldValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator usernameRequiredFieldValidator1;
-        
-        /// <summary>
         /// label_login_password control.
         /// </summary>
         /// <remarks>
@@ -92,15 +47,6 @@ namespace UserManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_login_password;
-        
-        /// <summary>
-        /// passwordRequiredFieldValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator passwordRequiredFieldValidator1;
         
         /// <summary>
         /// btnLogin control.

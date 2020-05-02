@@ -18,6 +18,7 @@ namespace UserManagement
         {
             username = (string)Session["username"];
             usertype = (string)Session["usertype"];
+            //UsersGridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
             if (!IsPostBack)
             {
                 if ((username == null) || (usertype == null))
@@ -717,6 +718,35 @@ namespace UserManagement
                         {
                             Image icon = new Image();
                             if(UsersGridView1.SortDirection.ToString().Equals(SortDirection))
+                            {
+                                icon.ImageUrl = "~/Images/down_arrow.png";
+                            }
+                            else
+                            {
+                                icon.ImageUrl = "~/Images/up_arrow.png";
+                            }
+                            tc.Controls.Add(new LiteralControl(" "));
+                            tc.Controls.Add(icon);
+
+                        }
+                    }
+                }
+            }
+        }
+
+        protected void AccessRequestGridView1_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                foreach (TableCell tc in e.Row.Cells)
+                {
+                    if (tc.HasControls())
+                    {
+                        LinkButton lb = (LinkButton)tc.Controls[0];
+                        if (lb != null)
+                        {
+                            Image icon = new Image();
+                            if (AccessGridView1.SortDirection.ToString().Equals(SortDirection))
                             {
                                 icon.ImageUrl = "~/Images/down_arrow.png";
                             }

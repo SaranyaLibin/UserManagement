@@ -22,24 +22,6 @@ namespace UserManagement {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// scrptSignUp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager scrptSignUp;
-        
-        /// <summary>
-        /// SignUpUpdatePanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel SignUpUpdatePanel;
-        
-        /// <summary>
         /// label_error_register control.
         /// </summary>
         /// <remarks>
